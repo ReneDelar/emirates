@@ -1,0 +1,25 @@
+---
+interface Props {
+  items: string[];
+  cols?: number;
+  gap?: string;
+}
+const { items, cols = 3, gap = '26px 40px' } = Astro.props;
+const gridClass = cols === 2 ? 'grid grid--2' : 'grid grid--3';
+---
+<div class={`${gridClass} checklist`} style={`gap:${gap}`}>
+  {items.map((t) => (
+    <div class="check">
+      <span class="check__chip">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1869B3" stroke-width="2.4"><path d="M20 6L9 17l-5-5"></path></svg>
+      </span>
+      <span class="check__txt">{t}</span>
+    </div>
+  ))}
+</div>
+
+<style>
+  .check { display: flex; align-items: flex-start; gap: 12px; }
+  .check__chip { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--chip); display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .check__txt { font-size: 15.5px; color: var(--text); line-height: 1.5; }
+</style>

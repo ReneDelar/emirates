@@ -1,0 +1,24 @@
+---
+import { Image } from 'astro:assets';
+import type { Region } from '../data/regions';
+interface Props { region: Region }
+const { region } = Astro.props;
+---
+<article class="card rg" id={region.id} style="scroll-margin-top:90px">
+  <div class="rg__media"><Image src={region.image} alt={region.alt} class="rg__img" /></div>
+  <div class="rg__body">
+    <h3 class="rg__title">{region.title}</h3>
+    <p class="rg__text">{region.text}</p>
+    <a href="/contacts" class="textlink rg__link">Plan a trip &rarr;</a>
+  </div>
+</article>
+
+<style>
+  .rg { border-radius: 12px; }
+  .rg__media { height: 230px; overflow: hidden; }
+  .rg__img { width: 100%; height: 100%; object-fit: cover; }
+  .rg__body { padding: 24px 26px 26px; }
+  .rg__title { font-weight: 700; font-size: 22px; color: var(--head); margin: 0 0 10px; }
+  .rg__text { font-size: 15.5px; line-height: 1.7; color: var(--text-mute); margin: 0 0 18px; }
+  .rg__link { font-size: 14.5px; }
+</style>

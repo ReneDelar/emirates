@@ -1,0 +1,12 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead?: string;
+  titleMax?: number;
+}
+const { eyebrow, title, lead, titleMax } = Astro.props;
+---
+<p class="eyebrow">{eyebrow}</p>
+<h2 class="section-title" style={titleMax ? `max-width:${titleMax}px` : undefined}>{title}</h2>
+{lead && <p class="lead">{lead}</p>}

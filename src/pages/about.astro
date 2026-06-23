@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import FeatureSplit from '../components/FeatureSplit.astro';
+import Checklist from '../components/Checklist.astro';
+import Stats from '../components/Stats.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { images } from '../assets/images';
+import { includedOnBoard, advantagesFull } from '../data/content';
+
+const stats = [
+  { value: '10+', label: 'Yachts in the fleet' },
+  { value: '24/7', label: 'Booking & support' },
+  { value: '5★', label: 'Guest rating' },
+  { value: '100%', label: 'Fully insured trips' },
+];
+---
+<BaseLayout
+  title="About Us | Emirates Fishing Tour"
+  description="Learn about Emirates Fishing Tour — Dubai's luxury yacht charter, fishing and cruise specialists."
+  active="about"
+>
+  <Hero
+    image={images['luxury-yacht']}
+    alt="Luxury yacht cruising the Dubai coastline"
+    breadcrumb="About Us"
+    title="About Emirates Fishing Tour"
+    subtitle="Dubai's luxury yacht charter, fishing and cruise specialists."
+  />
+
+  <FeatureSplit
+    image={images['luxury-yacht']}
+    alt="Luxury yacht on the water in Dubai"
+    eyebrow="Welcome to Dubai"
+    title="A paradise where every idea turns into reality"
+    align="start"
+    sticky
+    mediaHeight={440}
+    cols="1.05fr .95fr"
+  >
+    <p class="copy">Dubai is a city of great opportunities and a paradise where every traveler can turn their goals and ideas into reality — one of the few places offering the very best conditions for water recreation. For fans of fishing, water sports, private celebrations, corporate events or simply lovers of luxurious recreation surrounded by mesmerizing landscapes, Emirates Fishing Tour helps you bring every idea to life.</p>
+    <p class="copy">Our extensive fleet offers a wide range of yachts and boats equipped with the latest features and amenities. Whether you prefer a sleek modern vessel or a classic yacht, our fleet has something to suit every taste — all models meeting the latest technical requirements.</p>
+    <p class="copy">From renting a modern yacht for a charter in the Persian Gulf to a group theme cruise, our team of experts does everything possible to give you an exceptional yacht charter holiday in Dubai, complete with stunning views and ideal onboard amenities.</p>
+    <p class="copy">Having used the services of our company once, you will wish to contact Emirates Fishing Tour again — because our service is of high quality. Our clients are always satisfied and recommend us to their relatives and friends.</p>
+  </FeatureSplit>
+
+  <Stats items={stats} />
+
+  <Section tint>
+    <SectionHeading
+      eyebrow="All-inclusive charter"
+      title="What's included on board"
+      lead="Every charter comes complete — you simply step aboard and enjoy the day."
+    />
+    <Checklist items={includedOnBoard} cols={3} gap="26px 40px" />
+  </Section>
+
+  <Section>
+    <SectionHeading
+      eyebrow="Our advantages"
+      title="Why guests choose us"
+      lead="Every detail is handled by professionals — so your only job is to relax and enjoy the sea."
+    />
+    <Checklist items={advantagesFull} cols={2} gap="26px 48px" />
+  </Section>
+
+  <FeatureSplit
+    image={images['yacht-cabin-interior']}
+    alt="Luxurious yacht cabin interior"
+    eyebrow="Renting luxury yachts in Dubai"
+    title="Let us create your dream holiday"
+    tint
+    mediaFirst
+    mediaHeight={400}
+    cols=".95fr 1.05fr"
+  >
+    <p class="copy">Escape from unnecessary thoughts and immerse yourself in the world of luxury. Relax in spacious cabins, unwind in the expansive saloon and soak up the sun in the jacuzzi on the flybridge — cruising along the legendary coastline with breathtaking views of the Burj Khalifa and Palm Jumeirah.</p>
+    <p class="copy">Whether you're planning a romantic dinner, a vibrant celebration with friends or an unforgettable family adventure, our professional team anticipates and satisfies your every need — even for the most demanding guest.</p>
+    <blockquote class="quote">We're waiting for you on the luxurious deck with a glass of sparkling wine in your hands — five-star service is guaranteed.</blockquote>
+    <a href="/contacts" class="btn">Book your yacht</a>
+  </FeatureSplit>
+
+  <CtaBand />
+</BaseLayout>

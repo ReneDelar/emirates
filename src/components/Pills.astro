@@ -1,0 +1,12 @@
+---
+interface Props { items: string[] }
+const { items } = Astro.props;
+---
+<div class="pillrow">
+  {items.map((p) => <span class="pill">{p}</span>)}
+</div>
+
+<style>
+  .pillrow { display: flex; flex-wrap: wrap; gap: 12px; }
+  .pill { background: var(--chip); color: var(--brand); border: 1px solid #d6e6f5; border-radius: 22px; padding: 8px 17px; font-size: 14px; font-weight: 600; }
+</style>

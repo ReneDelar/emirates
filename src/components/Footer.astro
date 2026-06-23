@@ -1,0 +1,70 @@
+---
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Fishing regions', href: '/fishing-regions' },
+  { label: 'Yacht Rental', href: '/yacht-rental' },
+  { label: 'Excursions Dubai', href: '/excursions' },
+  { label: 'Contacts', href: '/contacts' },
+];
+const excursions = [
+  'Sightseeing Cruises', 'Yacht Fishing', 'Water Sports', 'Yacht Party', 'Romantic Cruise', 'Corporate Cruise',
+];
+---
+
+<footer class="ft">
+  <div class="ft__grid container">
+    <div>
+      <div class="ft__logo">
+        <svg width="30" height="30" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M6 24c6-9 18-13 28-11-3 3-5 6-5 11s2 8 5 11C24 37 12 33 6 24z" fill="#2b86c7"></path><path d="M34 13l8-5-2 11 2 11-8-5c-2-3-3-6-3-11s1-8 3-11z" fill="#cfe2f2"></path><circle cx="15" cy="21" r="2.1" fill="#fff"></circle></svg>
+        <span class="ft__name">Emirates Fishing Tour</span>
+      </div>
+      <p class="ft__about">Luxury yacht rental, fishing trips and bespoke cruises in Dubai. Fully insured, licensed crew, five-star service — 24/7.</p>
+    </div>
+
+    <div class="ft__col">
+      <h4 class="ft__head">Navigation</h4>
+      {navLinks.map((l) => <a class="ft__link" href={l.href}>{l.label}</a>)}
+    </div>
+
+    <div class="ft__col">
+      <h4 class="ft__head">Excursions</h4>
+      {excursions.map((s) => <a class="ft__link" href="/excursions">{s}</a>)}
+    </div>
+
+    <div class="ft__col">
+      <h4 class="ft__head">Get in touch</h4>
+      <a class="ft__phone" href="tel:+971000000000">+971 00 000 0000</a>
+      <a class="ft__link" href="https://wa.me/971000000000">WhatsApp us</a>
+      <a class="ft__link" href="mailto:info@emiratesfishingtour.com">info@emiratesfishingtour.com</a>
+      <span class="ft__link ft__static">Dubai Marina, UAE</span>
+    </div>
+  </div>
+
+  <div class="ft__bottom container">
+    <p>&copy; 2024 Emirates Fishing Tour &middot; Yacht Rental Dubai &middot; All rights reserved</p>
+    <p>Built with Astro &middot; emiratesfishingtour.com</p>
+  </div>
+</footer>
+
+<style>
+  .ft { background: var(--navy); color: #9fb4c6; }
+  .ft__grid { padding-top: 56px; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 40px; }
+  .ft__logo { display: flex; align-items: center; gap: 11px; margin-bottom: 16px; }
+  .ft__name { font-weight: 800; font-size: 18px; color: #fff; }
+  .ft__about { font-size: 14.5px; line-height: 1.7; max-width: 300px; }
+  .ft__col { display: flex; flex-direction: column; }
+  .ft__head { color: #fff; font-size: 14px; letter-spacing: .04em; margin: 0 0 12px; text-transform: uppercase; }
+  .ft__link { color: #9fb4c6; text-decoration: none; font-size: 14px; line-height: 2.1; transition: color .15s ease; }
+  .ft__link:hover { color: #fff; }
+  .ft__static { cursor: default; }
+  .ft__phone { color: #cfe0ee; text-decoration: none; font-weight: 700; font-size: 16px; margin-bottom: 6px; }
+  .ft__bottom { margin-top: 38px; padding-top: 18px; padding-bottom: 18px; border-top: 1px solid rgba(255,255,255,.12); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }
+  .ft__bottom p { margin: 0; font-size: 13.5px; }
+  @media (max-width: 860px) {
+    .ft__grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+  }
+  @media (max-width: 520px) {
+    .ft__grid { grid-template-columns: 1fr; }
+  }
+</style>

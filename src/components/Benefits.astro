@@ -1,0 +1,32 @@
+---
+// The four standing trust signals. Rendered as a 4-up grid (wrap in a Section in the page).
+const items = [
+  { title: '24/7 booking', sub: 'We work round-the-clock', icon: 'clock' },
+  { title: 'Fully insured', sub: 'Every guest onboard', icon: 'shield' },
+  { title: 'Licensed crew', sub: 'Captain & professionals', icon: 'star' },
+  { title: '5-star service', sub: 'Guaranteed every trip', icon: 'star' },
+];
+---
+<div class="grid grid--4 benefits">
+  {items.map((it) => (
+    <div class="feat">
+      <span class="feat__chip">
+        {it.icon === 'clock' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1869B3" stroke-width="1.7"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>}
+        {it.icon === 'shield' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1869B3" stroke-width="1.7"><path d="M12 2l8 4v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6z"></path></svg>}
+        {it.icon === 'star' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1869B3" stroke-width="1.7"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1L12 16.6 5.7 21l2.3-7.1-6-4.5h7.6z"></path></svg>}
+      </span>
+      <div>
+        <div class="feat__title">{it.title}</div>
+        <div class="feat__sub">{it.sub}</div>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .benefits { gap: 24px; }
+  .feat { display: flex; align-items: center; gap: 14px; }
+  .feat__chip { flex: none; width: 52px; height: 52px; border-radius: 14px; background: var(--chip); display: flex; align-items: center; justify-content: center; }
+  .feat__title { font-weight: 800; font-size: 17px; color: var(--navy-ink); }
+  .feat__sub { font-size: 13.5px; color: var(--muted); }
+</style>

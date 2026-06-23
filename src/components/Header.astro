@@ -1,0 +1,104 @@
+---
+export type NavKey = 'home' | 'about' | 'regions' | 'yachts' | 'excursions' | 'contacts';
+interface Props { active?: NavKey }
+const { active } = Astro.props;
+
+interface Item { key: NavKey; label: string; href: string; dropdown?: { label: string; href: string }[] }
+const nav: Item[] = [
+  { key: 'about', label: 'About Us', href: '/about' },
+  {
+    key: 'regions', label: 'Fishing regions', href: '/fishing-regions',
+    dropdown: [
+      { label: 'Dubai Marina & Coast', href: '/fishing-regions#dubai-marina' },
+      { label: 'Persian Gulf Deep Sea', href: '/fishing-regions#persian-gulf' },
+      { label: 'Palm Jumeirah Waters', href: '/fishing-regions#palm-jumeirah' },
+      { label: 'Musandam Peninsula', href: '/fishing-regions#musandam' },
+      { label: 'All fishing regions', href: '/fishing-regions' },
+    ],
+  },
+  { key: 'yachts', label: 'Yacht Rental', href: '/yacht-rental' },
+  {
+    key: 'excursions', label: 'Excursions Dubai', href: '/excursions',
+    dropdown: [
+      { label: 'Sightseeing Cruises', href: '/excursions#sightseeing' },
+      { label: 'Yacht Fishing', href: '/excursions#fishing' },
+      { label: 'Water Sports', href: '/excursions#water-sports' },
+      { label: 'Yacht Party', href: '/excursions#yacht-party' },
+      { label: 'Romantic Cruise', href: '/excursions#romantic' },
+      { label: 'Corporate Cruise', href: '/excursions#corporate' },
+    ],
+  },
+  { key: 'contacts', label: 'Contacts', href: '/contacts' },
+];
+---
+
+<header class="hdr">
+  <div class="hdr__bar container">
+    <a href="/" class="hdr__logo" aria-label="Emirates Fishing Tour — home">
+      <svg width="34" height="34" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M6 24c6-9 18-13 28-11-3 3-5 6-5 11s2 8 5 11C24 37 12 33 6 24z" fill="#1869B3"></path><path d="M34 13l8-5-2 11 2 11-8-5c-2-3-3-6-3-11s1-8 3-11z" fill="#14334F"></path><circle cx="15" cy="21" r="2.1" fill="#fff"></circle></svg>
+      <span class="hdr__brand">
+        <span class="hdr__name">Emirates</span>
+        <span class="hdr__sub">FISHING TOUR</span>
+      </span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Primary">
+      {nav.map((item) => item.dropdown ? (
+        <span class="nav-item">
+          <a class={`nav-link${active === item.key ? ' is-active' : ''}`} href={item.href}>
+            {item.label} <span class="caret">&#9660;</span>
+            {active === item.key && <span class="bar"></span>}
+          </a>
+          <span class="dropdown">
+            {item.dropdown.map((d) => <a href={d.href}>{d.label}</a>)}
+          </span>
+        </span>
+      ) : (
+        <a class={`nav-link${active === item.key ? ' is-active' : ''}`} href={item.href}>
+          {item.label}
+          {active === item.key && <span class="bar"></span>}
+        </a>
+      ))}
+      <span class="divider"></span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8794a0" stroke-width="1.6" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"></path></svg>
+      <span class="lang">EN <span class="caret">&#9660;</span></span>
+    </nav>
+
+    <label for="navtoggle" class="nav-burger" aria-label="Open menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#27384a" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+    </label>
+  </div>
+
+  <input type="checkbox" id="navtoggle" />
+  <div class="nav-mobile">
+    {nav.map((item) => (
+      <>
+        <a class={`m-link${active === item.key ? ' is-active' : ''}`} href={item.href}>{item.label}</a>
+        {item.dropdown && item.dropdown.slice(0, -1).map((d) => <a class="m-sub" href={d.href}>{d.label}</a>)}
+      </>
+    ))}
+  </div>
+</header>
+
+<style>
+  .hdr { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: 1px solid var(--border-soft); }
+  .hdr__bar { height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .hdr__logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+  .hdr__brand { display: flex; flex-direction: column; line-height: 1; }
+  .hdr__name { font-weight: 800; font-size: 21px; color: var(--navy); letter-spacing: -.01em; }
+  .hdr__sub { font-weight: 700; font-size: 9px; letter-spacing: .3em; color: #7c8b97; margin-top: 3px; }
+
+  .nav-desktop { display: flex; align-items: center; gap: 26px; font-weight: 600; font-size: 15px; color: #42525f; }
+  .nav-link { color: #42525f; text-decoration: none; display: flex; align-items: center; gap: 5px; }
+  .nav-link.is-active { color: var(--brand); font-weight: 700; }
+  .caret { font-size: 9px; color: #a9b6c0; }
+  .bar { position: absolute; left: 0; right: 0; bottom: -26px; height: 2px; background: var(--brand); border-radius: 2px; }
+  .divider { width: 1px; height: 20px; background: #e6ebef; }
+  .lang { display: flex; align-items: center; gap: 5px; color: #42525f; font-weight: 600; cursor: pointer; }
+
+  .nav-burger { cursor: pointer; width: 42px; height: 42px; border: 1px solid #e6ebef; border-radius: 10px; align-items: center; justify-content: center; }
+  .nav-mobile { display: none; flex-direction: column; padding: 6px 28px 18px; background: #fff; border-top: 1px solid var(--border); }
+  .m-link { padding: 13px 4px; border-bottom: 1px solid var(--border); color: #27384a; font-weight: 700; font-size: 16px; text-decoration: none; }
+  .m-link.is-active { color: var(--brand); }
+  .m-sub { padding: 9px 4px 9px 18px; border-bottom: 1px solid #f4f7fa; color: #6b7a88; font-weight: 600; font-size: 14px; text-decoration: none; }
+</style>

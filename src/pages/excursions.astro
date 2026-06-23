@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Benefits from '../components/Benefits.astro';
+import ServiceRow from '../components/ServiceRow.astro';
+import Pills from '../components/Pills.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { images } from '../assets/images';
+import { services } from '../data/services';
+import { landmarks } from '../data/content';
+---
+<BaseLayout
+  title="Excursions Dubai | Emirates Fishing Tour"
+  description="Yacht excursions in Dubai — sightseeing, fishing, water sports, parties, romantic and corporate cruises."
+  active="excursions"
+>
+  <Hero
+    image={images['dubai-sightseeing']}
+    alt="Yacht cruising past the Dubai skyline"
+    breadcrumb="Excursions Dubai"
+    title="Excursions & Cruises in Dubai"
+    subtitle="From sightseeing cruises to corporate celebrations — choose the experience that fits your day on the water."
+  />
+
+  <Section>
+    <SectionHeading
+      eyebrow="Our services"
+      title="Many formats of water recreation"
+      titleMax={760}
+      lead="From renting a modern yacht for a charter in the Persian Gulf to a group theme cruise, our team of experts does everything possible to give you an exceptional yacht charter holiday in Dubai — complete with stunning views and ideal onboard amenities. Choose the format that fits your day on the water and we will arrange every detail."
+    />
+    <Benefits />
+  </Section>
+
+  {services.map((s, i) => <ServiceRow service={s} reversed={i % 2 === 1} tint={i % 2 === 0} />)}
+
+  <Section tint>
+    <SectionHeading
+      eyebrow="On your route"
+      title="Iconic Dubai sights you'll pass"
+      titleMax={760}
+      lead="Cruise along the legendary coastline and take in Dubai's most famous landmarks from the water. We help you plan the perfect route past every must-see view."
+    />
+    <Pills items={landmarks} />
+  </Section>
+
+  <CtaBand />
+</BaseLayout>

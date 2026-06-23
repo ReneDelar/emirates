@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Benefits from '../components/Benefits.astro';
+import YachtCard from '../components/YachtCard.astro';
+import Checklist from '../components/Checklist.astro';
+import FeatureSplit from '../components/FeatureSplit.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { images } from '../assets/images';
+import { fleet } from '../data/fleet';
+import { includedOnBoard } from '../data/content';
+---
+<BaseLayout
+  title="Yacht Rental Dubai | Emirates Fishing Tour"
+  description="Rent luxury yachts in Dubai — Azimut 50, 58 and 62. All-inclusive charters with a licensed crew."
+  active="yachts"
+>
+  <Hero
+    image={images['luxury-yacht-on-turquoise-water']}
+    alt="Luxury yacht cruising on turquoise water in Dubai"
+    breadcrumb="Yacht Rental Dubai"
+    title="Yacht Rental Dubai"
+    subtitle="Choose from our fleet of modern Azimut yachts — all-inclusive charters with a licensed crew."
+    minHeight={480}
+  />
+
+  <Section>
+    <SectionHeading
+      eyebrow="Best in Dubai"
+      title="Our yacht fleet"
+      lead="Our extensive fleet offers a wide range of modern Azimut yachts equipped with the latest features and amenities. Every model meets the highest technical and safety standards — pick the vessel that fits your group and your day on the water."
+    />
+    <div class="grid grid--3">{fleet.map((y) => <YachtCard yacht={y} />)}</div>
+  </Section>
+
+  <Section tint size="sm"><Benefits /></Section>
+
+  <Section>
+    <SectionHeading
+      eyebrow="All-inclusive charter"
+      title="What's included on board"
+      lead="Every charter comes complete — you simply step aboard and enjoy the day. From the captain and crew to fuel, refreshments and full insurance, everything is taken care of."
+    />
+    <Checklist items={includedOnBoard} cols={3} gap="22px 30px" />
+  </Section>
+
+  <FeatureSplit
+    image={images['luxury-yacht']}
+    alt="Luxury yacht moored off the Dubai coastline"
+    eyebrow="Renting luxury yachts in Dubai"
+    title="Let us create your dream holiday"
+    tint
+    mediaHeight={420}
+    cols="1.05fr .95fr"
+  >
+    <p class="copy">Escape from unnecessary thoughts and immerse yourself in the world of luxury. Relax in spacious cabins, unwind in the expansive saloon and soak up the sun in the jacuzzi on the flybridge — cruising along the legendary coastline with breathtaking views of the Burj Khalifa and Palm Jumeirah.</p>
+    <p class="copy">Whether you're planning a romantic dinner, a vibrant celebration with friends or an unforgettable family adventure, our professional team anticipates and satisfies your every need — even for the most demanding guest.</p>
+    <blockquote class="quote--card">"We're waiting for you on the luxurious deck with a glass of sparkling wine in your hands — five-star service is guaranteed."</blockquote>
+    <a href="/contacts" class="btn">Request a booking</a>
+  </FeatureSplit>
+
+  <CtaBand />
+</BaseLayout>

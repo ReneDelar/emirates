@@ -1,0 +1,19 @@
+---
+interface Props {
+  tint?: boolean;
+  size?: 'sm' | 'md' | 'lg';
+  id?: string;
+  reveal?: boolean;
+  scrollAnchor?: boolean;
+}
+const { tint = false, size = 'md', id, reveal = true, scrollAnchor = false } = Astro.props;
+const cls = [
+  'section',
+  size === 'sm' && 'section--sm',
+  size === 'lg' && 'section--lg',
+  tint && 'section--tint',
+].filter(Boolean).join(' ');
+---
+<section class={cls} id={id} data-reveal={reveal ? '' : undefined} style={scrollAnchor ? 'scroll-margin-top:90px' : undefined}>
+  <div class="container"><slot /></div>
+</section>
