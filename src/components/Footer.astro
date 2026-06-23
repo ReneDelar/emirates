@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logoWhite from '../assets/logo-white.png';
 const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about' },
@@ -16,8 +18,7 @@ const excursions = [
   <div class="ft__grid container">
     <div>
       <div class="ft__logo">
-        <svg width="30" height="30" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M6 24c6-9 18-13 28-11-3 3-5 6-5 11s2 8 5 11C24 37 12 33 6 24z" fill="#2b86c7"></path><path d="M34 13l8-5-2 11 2 11-8-5c-2-3-3-6-3-11s1-8 3-11z" fill="#cfe2f2"></path><circle cx="15" cy="21" r="2.1" fill="#fff"></circle></svg>
-        <span class="ft__name">Emirates Fishing Tour</span>
+        <Image src={logoWhite} alt="Emirates Fishing Tour" class="ft__logo-img" />
       </div>
       <p class="ft__about">Luxury yacht rental, fishing trips and bespoke cruises in Dubai. Fully insured, licensed crew, five-star service — 24/7.</p>
     </div>
@@ -50,8 +51,8 @@ const excursions = [
 <style>
   .ft { background: var(--navy); color: #9fb4c6; }
   .ft__grid { padding-top: 56px; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 40px; }
-  .ft__logo { display: flex; align-items: center; gap: 11px; margin-bottom: 16px; }
-  .ft__name { font-weight: 800; font-size: 18px; color: #fff; }
+  .ft__logo { display: flex; align-items: center; margin-bottom: 16px; }
+  .ft__logo-img { height: 30px; width: auto; display: block; }
   .ft__about { font-size: 14.5px; line-height: 1.7; max-width: 300px; }
   .ft__col { display: flex; flex-direction: column; }
   .ft__head { color: #fff; font-size: 14px; letter-spacing: .04em; margin: 0 0 12px; text-transform: uppercase; }

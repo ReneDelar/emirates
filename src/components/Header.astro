@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logoBlue from '../assets/logo-blue.png';
 export type NavKey = 'home' | 'about' | 'regions' | 'yachts' | 'excursions' | 'contacts';
 interface Props { active?: NavKey }
 const { active } = Astro.props;
@@ -35,11 +37,7 @@ const nav: Item[] = [
 <header class="hdr">
   <div class="hdr__bar container">
     <a href="/" class="hdr__logo" aria-label="Emirates Fishing Tour — home">
-      <svg width="34" height="34" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M6 24c6-9 18-13 28-11-3 3-5 6-5 11s2 8 5 11C24 37 12 33 6 24z" fill="#1869B3"></path><path d="M34 13l8-5-2 11 2 11-8-5c-2-3-3-6-3-11s1-8 3-11z" fill="#14334F"></path><circle cx="15" cy="21" r="2.1" fill="#fff"></circle></svg>
-      <span class="hdr__brand">
-        <span class="hdr__name">Emirates</span>
-        <span class="hdr__sub">FISHING TOUR</span>
-      </span>
+      <Image src={logoBlue} alt="Emirates Fishing Tour" class="hdr__logo-img" />
     </a>
 
     <nav class="nav-desktop" aria-label="Primary">
@@ -83,10 +81,8 @@ const nav: Item[] = [
 <style>
   .hdr { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: 1px solid var(--border-soft); }
   .hdr__bar { height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-  .hdr__logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
-  .hdr__brand { display: flex; flex-direction: column; line-height: 1; }
-  .hdr__name { font-weight: 800; font-size: 21px; color: var(--navy); letter-spacing: -.01em; }
-  .hdr__sub { font-weight: 700; font-size: 9px; letter-spacing: .3em; color: #7c8b97; margin-top: 3px; }
+  .hdr__logo { display: flex; align-items: center; text-decoration: none; }
+  .hdr__logo-img { height: 38px; width: auto; display: block; }
 
   .nav-desktop { display: flex; align-items: center; gap: 26px; font-weight: 600; font-size: 15px; color: #42525f; }
   .nav-link { color: #42525f; text-decoration: none; display: flex; align-items: center; gap: 5px; }
