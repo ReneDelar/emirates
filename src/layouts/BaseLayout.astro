@@ -26,8 +26,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <!-- Reveal class set before paint to avoid a content flash; CSS keeps content visible if JS is off. -->
-    <script is:inline>document.documentElement.classList.add('reveal-on');</script>
+    <!-- Set before paint so the to-be-animated elements start hidden (no flash).
+         Skipped when JS is off or the user prefers reduced motion → content stays visible. -->
+    <script is:inline>
+      if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('anim');
+      }
+    </script>
   </head>
   <body>
     <Header active={active} />
@@ -37,22 +42,69 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <Footer />
 
     <script>
-      const els = document.querySelectorAll('[data-reveal]');
-      if (!('IntersectionObserver' in window)) {
-        els.forEach((e) => e.classList.add('in'));
-      } else {
-        const io = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((x) => {
-              if (x.isIntersecting) {
-                x.target.classList.add('in');
-                io.unobserve(x.target);
-              }
-            });
-          },
-          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-        );
-        els.forEach((e) => io.observe(e));
+      import gsap from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      try {
+      gsap.registerPlugin(ScrollTrigger);
+
+      const mm = gsap.matchMedia();
+
+      // Full animation only when the user is fine with motion.
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        // Expand a content wrapper into the elements we actually animate:
+        // grid containers become their items (cards stagger one-by-one), everything
+        // else stays as-is. Background images / overlays live outside these wrappers,
+        // so they're never touched.
+        const collect = (root) => {
+          const items = [];
+          for (const child of Array.from(root.children)) {
+            if (child.classList.contains('grid')) items.push(...child.children);
+            else items.push(child);
+          }
+          return items;
+        };
+
+        // Hero — plays immediately on load (it's above the fold).
+        const hero = document.querySelector('.hero');
+        if (hero) {
+          const inner = hero.querySelector('.hero__inner');
+          if (inner) {
+            gsap.fromTo(
+              inner.children,
+              { y: 42, autoAlpha: 0 },
+              { y: 0, autoAlpha: 1, duration: 0.9, ease: 'power3.out', stagger: 0.12, delay: 0.08 }
+            );
+          }
+        }
+
+        // Every other section — reveals as it scrolls into view, items staggered.
+        gsap.utils.toArray('[data-reveal]').forEach((sec) => {
+          if (sec.classList.contains('hero')) return;
+          const root = sec.querySelector('.cta__inner') || sec.querySelector('.container') || sec;
+          const items = collect(root);
+          if (!items.length) return;
+          gsap.fromTo(
+            items,
+            { y: 40, autoAlpha: 0 },
+            {
+              y: 0,
+              autoAlpha: 1,
+              duration: 0.7,
+              ease: 'power3.out',
+              stagger: { each: 0.08, amount: Math.min(items.length * 0.08, 0.55) },
+              scrollTrigger: { trigger: sec, start: 'top 82%', once: true },
+            }
+          );
+        });
+
+        // Recompute trigger positions once images/fonts settle the layout.
+        window.addEventListener('load', () => ScrollTrigger.refresh());
+      });
+      } catch (e) {
+        // Safety net: never leave content hidden if animation setup fails.
+        document.documentElement.classList.remove('anim');
+        console.error('[anim] setup failed, content revealed', e);
       }
     </script>
   </body>
