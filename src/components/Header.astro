@@ -32,69 +32,56 @@ const nav: Item[] = [
   },
   { key: 'contacts', label: 'Contacts', href: '/contacts' },
 ];
+
+const linkBase = 'relative flex items-center gap-[5px] no-underline transition-colors duration-150 hover:text-brand';
+const dropdownPanel =
+  "absolute top-full left-[-14px] min-w-[230px] bg-white border border-line-soft rounded-xl shadow-[0_18px_44px_rgba(20,50,75,.16)] p-2 z-[60] opacity-0 invisible translate-y-2 transition-[opacity,transform] duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-[6px] before:content-[''] before:absolute before:inset-x-0 before:-top-3 before:h-3.5";
+const dropdownLink =
+  'block px-[13px] py-[9px] rounded-lg text-[14px] font-semibold text-[#42525f] no-underline transition-colors duration-150 hover:bg-[#f1f6fb] hover:text-brand';
 ---
 
-<header class="hdr">
-  <div class="hdr__bar container">
-    <a href="/" class="hdr__logo" aria-label="Emirates Fishing Tour — home">
-      <Image src={logoBlue} alt="Emirates Fishing Tour" class="hdr__logo-img" />
+<header class="sticky top-0 z-50 bg-white border-b border-line-soft">
+  <div class="container flex items-center justify-between gap-6 h-[72px]">
+    <a href="/" class="flex items-center" aria-label="Emirates Fishing Tour — home">
+      <Image src={logoBlue} alt="Emirates Fishing Tour" class="h-[38px] w-auto block" />
     </a>
 
-    <nav class="nav-desktop" aria-label="Primary">
+    <nav class="flex max-[980px]:hidden items-center gap-[26px] font-semibold text-[15px] text-[#42525f]" aria-label="Primary">
       {nav.map((item) => item.dropdown ? (
-        <span class="nav-item">
-          <a class={`nav-link${active === item.key ? ' is-active' : ''}`} href={item.href}>
-            {item.label} <span class="caret">&#9660;</span>
-            {active === item.key && <span class="bar"></span>}
+        <span class="relative group">
+          <a class={`${linkBase} ${active === item.key ? 'text-brand font-bold' : 'text-[#42525f]'}`} href={item.href}>
+            {item.label} <span class="text-[9px] text-[#a9b6c0]">&#9660;</span>
+            {active === item.key && <span class="absolute left-0 right-0 -bottom-[26px] h-0.5 bg-brand rounded-sm"></span>}
           </a>
-          <span class="dropdown">
-            {item.dropdown.map((d) => <a href={d.href}>{d.label}</a>)}
+          <span class={dropdownPanel}>
+            {item.dropdown.map((d) => <a class={dropdownLink} href={d.href}>{d.label}</a>)}
           </span>
         </span>
       ) : (
-        <a class={`nav-link${active === item.key ? ' is-active' : ''}`} href={item.href}>
+        <a class={`${linkBase} ${active === item.key ? 'text-brand font-bold' : 'text-[#42525f]'}`} href={item.href}>
           {item.label}
-          {active === item.key && <span class="bar"></span>}
+          {active === item.key && <span class="absolute left-0 right-0 -bottom-[26px] h-0.5 bg-brand rounded-sm"></span>}
         </a>
       ))}
-      <span class="divider"></span>
+      <span class="w-px h-5 bg-[#e6ebef]"></span>
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8794a0" stroke-width="1.6" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"></path></svg>
-      <span class="lang">EN <span class="caret">&#9660;</span></span>
+      <span class="flex items-center gap-[5px] text-[#42525f] font-semibold cursor-pointer">EN <span class="text-[9px] text-[#a9b6c0]">&#9660;</span></span>
     </nav>
 
-    <label for="navtoggle" class="nav-burger" aria-label="Open menu">
+    <label for="navtoggle" class="hidden max-[980px]:flex cursor-pointer w-[42px] h-[42px] border border-[#e6ebef] rounded-[10px] items-center justify-center" aria-label="Open menu">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#27384a" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
     </label>
   </div>
 
-  <input type="checkbox" id="navtoggle" />
-  <div class="nav-mobile">
+  <input type="checkbox" id="navtoggle" class="peer hidden" />
+  <div class="hidden max-[980px]:peer-checked:flex flex-col px-7 pt-[6px] pb-[18px] bg-white border-t border-line">
     {nav.map((item) => (
       <>
-        <a class={`m-link${active === item.key ? ' is-active' : ''}`} href={item.href}>{item.label}</a>
-        {item.dropdown && item.dropdown.slice(0, -1).map((d) => <a class="m-sub" href={d.href}>{d.label}</a>)}
+        <a class={`py-[13px] px-1 border-b border-line font-bold text-base no-underline ${active === item.key ? 'text-brand' : 'text-[#27384a]'}`} href={item.href}>{item.label}</a>
+        {item.dropdown && item.dropdown.slice(0, -1).map((d) => (
+          <a class="py-[9px] pr-1 pl-[18px] border-b border-[#f4f7fa] text-[#6b7a88] font-semibold text-[14px] no-underline" href={d.href}>{d.label}</a>
+        ))}
       </>
     ))}
   </div>
 </header>
-
-<style>
-  .hdr { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: 1px solid var(--border-soft); }
-  .hdr__bar { height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-  .hdr__logo { display: flex; align-items: center; text-decoration: none; }
-  .hdr__logo-img { height: 38px; width: auto; display: block; }
-
-  .nav-desktop { display: flex; align-items: center; gap: 26px; font-weight: 600; font-size: 15px; color: #42525f; }
-  .nav-link { color: #42525f; text-decoration: none; display: flex; align-items: center; gap: 5px; }
-  .nav-link.is-active { color: var(--brand); font-weight: 700; }
-  .caret { font-size: 9px; color: #a9b6c0; }
-  .bar { position: absolute; left: 0; right: 0; bottom: -26px; height: 2px; background: var(--brand); border-radius: 2px; }
-  .divider { width: 1px; height: 20px; background: #e6ebef; }
-  .lang { display: flex; align-items: center; gap: 5px; color: #42525f; font-weight: 600; cursor: pointer; }
-
-  .nav-burger { cursor: pointer; width: 42px; height: 42px; border: 1px solid #e6ebef; border-radius: 10px; align-items: center; justify-content: center; }
-  .nav-mobile { display: none; flex-direction: column; padding: 6px 28px 18px; background: #fff; border-top: 1px solid var(--border); }
-  .m-link { padding: 13px 4px; border-bottom: 1px solid var(--border); color: #27384a; font-weight: 700; font-size: 16px; text-decoration: none; }
-  .m-link.is-active { color: var(--brand); }
-  .m-sub { padding: 9px 4px 9px 18px; border-bottom: 1px solid #f4f7fa; color: #6b7a88; font-weight: 600; font-size: 14px; text-decoration: none; }
-</style>

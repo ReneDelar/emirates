@@ -52,50 +52,46 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 
       // Full animation only when the user is fine with motion.
       mm.add('(prefers-reduced-motion: no-preference)', () => {
-        // Expand a content wrapper into the elements we actually animate:
-        // grid containers become their items (cards stagger one-by-one), everything
-        // else stays as-is. Background images / overlays live outside these wrappers,
-        // so they're never touched.
+        // Hooks are data-attributes (decoupled from Tailwind styling):
+        //   [data-reveal]       — a section to animate
+        //   [data-hero]         — the hero (plays immediately, above the fold)
+        //   [data-reveal-root]  — wrapper whose children are the reveal items
+        //   [data-grid]         — expanded into its children so cards stagger one-by-one
         const collect = (root) => {
           const items = [];
           for (const child of Array.from(root.children)) {
-            if (child.classList.contains('grid')) items.push(...child.children);
+            if (child.hasAttribute('data-grid')) items.push(...child.children);
             else items.push(child);
           }
           return items;
         };
 
-        // Hero — plays immediately on load (it's above the fold).
-        const hero = document.querySelector('.hero');
-        if (hero) {
-          const inner = hero.querySelector('.hero__inner');
-          if (inner) {
+        gsap.utils.toArray('[data-reveal]').forEach((sec) => {
+          const root = sec.querySelector('[data-reveal-root]') || sec;
+          const items = collect(root);
+          if (!items.length) return;
+          if (sec.hasAttribute('data-hero')) {
+            // Hero plays immediately on load (above the fold).
             gsap.fromTo(
-              inner.children,
+              items,
               { y: 42, autoAlpha: 0 },
               { y: 0, autoAlpha: 1, duration: 0.9, ease: 'power3.out', stagger: 0.12, delay: 0.08 }
             );
+          } else {
+            // Everything else reveals as it scrolls into view, items staggered.
+            gsap.fromTo(
+              items,
+              { y: 40, autoAlpha: 0 },
+              {
+                y: 0,
+                autoAlpha: 1,
+                duration: 0.7,
+                ease: 'power3.out',
+                stagger: { each: 0.08, amount: Math.min(items.length * 0.08, 0.55) },
+                scrollTrigger: { trigger: sec, start: 'top 82%', once: true },
+              }
+            );
           }
-        }
-
-        // Every other section — reveals as it scrolls into view, items staggered.
-        gsap.utils.toArray('[data-reveal]').forEach((sec) => {
-          if (sec.classList.contains('hero')) return;
-          const root = sec.querySelector('.cta__inner') || sec.querySelector('.container') || sec;
-          const items = collect(root);
-          if (!items.length) return;
-          gsap.fromTo(
-            items,
-            { y: 40, autoAlpha: 0 },
-            {
-              y: 0,
-              autoAlpha: 1,
-              duration: 0.7,
-              ease: 'power3.out',
-              stagger: { each: 0.08, amount: Math.min(items.length * 0.08, 0.55) },
-              scrollTrigger: { trigger: sec, start: 'top 82%', once: true },
-            }
-          );
         });
 
         // Recompute trigger positions once images/fonts settle the layout.

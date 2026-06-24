@@ -13,6 +13,8 @@ import { images } from '../assets/images';
 import { fleet } from '../data/fleet';
 import { services } from '../data/services';
 import { advantagesHome } from '../data/content';
+
+const grid3 = 'grid grid-cols-3 gap-[30px] max-[980px]:grid-cols-2 max-[640px]:grid-cols-1';
 ---
 <BaseLayout
   title="Yacht Rental Dubai | Emirates Fishing Tour"
@@ -29,7 +31,7 @@ import { advantagesHome } from '../data/content';
     titleSize={60}
     padY={64}
   >
-    <div class="hero-actions">
+    <div class="flex flex-wrap items-center gap-4 mt-[34px]">
       <a href="/yacht-rental" class="btn-light">View the fleet →</a>
       <a href="/contacts" class="btn-ghost">Contact us</a>
     </div>
@@ -43,8 +45,8 @@ import { advantagesHome } from '../data/content';
       title="Most popular yachts in Dubai"
       lead="Our extensive fleet offers a wide range of yachts equipped with the latest features and amenities — all models meeting the highest technical and safety standards. Choose your favourite below."
     />
-    <div class="grid grid--3">{fleet.map((y) => <YachtCard yacht={y} />)}</div>
-    <div class="center mt-40"><a href="/yacht-rental" class="textlink">View all yachts →</a></div>
+    <div class={grid3} data-grid>{fleet.map((y) => <YachtCard yacht={y} />)}</div>
+    <div class="text-center mt-10"><a href="/yacht-rental" class="textlink">View all yachts →</a></div>
   </Section>
 
   <FeatureSplit
@@ -59,7 +61,7 @@ import { advantagesHome } from '../data/content';
   >
     <p class="copy">Dubai is a city of great opportunities — one of the few places offering the very best conditions for water recreation. For fans of fishing, water sports, private celebrations, corporate events or simply lovers of luxurious recreation surrounded by mesmerizing landscapes, Emirates Fishing Tour helps you bring every idea to life.</p>
     <p class="copy">From renting a modern yacht for a charter in the Persian Gulf to a group theme cruise, our team of experts does everything possible to give you an exceptional yacht charter holiday in Dubai, complete with stunning views and ideal onboard amenities.</p>
-    <a href="/about" class="btn" style="margin-top:10px">About us</a>
+    <a href="/about" class="btn mt-[10px]">About us</a>
   </FeatureSplit>
 
   <Section>
@@ -68,7 +70,7 @@ import { advantagesHome } from '../data/content';
       title="Many formats of water recreation"
       lead="From sightseeing cruises to corporate celebrations — choose the experience that fits your day on the water."
     />
-    <div class="grid grid--3">{services.map((s) => <ServiceTile service={s} />)}</div>
+    <div class={grid3} data-grid>{services.map((s) => <ServiceTile service={s} />)}</div>
   </Section>
 
   <Section tint>

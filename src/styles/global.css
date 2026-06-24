@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
@@ -449,122 +451,60 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* ============ Emirates Fishing Tour — design system ============ */
-:root{
-  --navy:#14334F;        /* deep navy: headings, footer */
-  --navy-ink:#16364f;    /* heading ink */
-  --head:#21384c;        /* card heading */
-  --brand:#1869B3;       /* brand blue: accents, eyebrows, icons */
-  --brand-dark:#12568f;  /* button hover */
-  --book:#1B4F7E;        /* "Book now" button */
-  --badge:#2484CC;       /* bestseller badge */
-  --text:#46586a;        /* body text */
-  --text-soft:#566879;   /* secondary text */
-  --text-mute:#667889;   /* tertiary text */
-  --muted:#8794a0;       /* muted labels */
-  --tint:#f6f9fc;        /* alternate section background */
-  --chip:#eaf3fb;        /* icon-chip background */
-  --border:#eef2f5;      /* card borders */
-  --border-soft:#edf1f4; /* header / dropdown borders */
-  --maxw:1240px;
-  --pad-x:28px;
+/* ============ Emirates Fishing Tour — Tailwind theme ============ */
+@theme {
+  --color-navy: #14334F;        /* deep navy: headings, footer */
+  --color-navy-ink: #16364f;    /* heading ink */
+  --color-head: #21384c;        /* card heading */
+  --color-brand: #1869B3;       /* brand blue: accents, eyebrows, icons */
+  --color-brand-dark: #12568f;  /* button hover */
+  --color-book: #1B4F7E;        /* "Book now" button */
+  --color-badge: #2484CC;       /* bestseller badge */
+  --color-ink: #46586a;         /* body text */
+  --color-soft: #566879;        /* secondary text */
+  --color-mute: #667889;        /* tertiary text */
+  --color-faint: #8794a0;       /* muted labels */
+  --color-tint: #f6f9fc;        /* alternate section background */
+  --color-chip: #eaf3fb;        /* icon-chip background */
+  --color-line: #eef2f5;        /* card borders */
+  --color-line-soft: #edf1f4;   /* header / dropdown borders */
+  --font-sans: 'Open Sans', system-ui, -apple-system, sans-serif;
 }
 
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:#fff;font-family:'Open Sans',system-ui,-apple-system,sans-serif;color:var(--text);-webkit-font-smoothing:antialiased}
-img{display:block}
-a{color:inherit}
-h1,h2,h3,p{margin:0}
-
-/* scroll reveal — GSAP drives the motion (see BaseLayout). This block only pre-hides
-   the exact elements GSAP animates so there's no flash before the script runs.
-   No `.anim` on <html> (JS disabled or prefers-reduced-motion) → nothing is hidden. */
-html.anim .hero__inner > *,
-html.anim [data-reveal]:not(.hero) .cta__inner > *,
-html.anim [data-reveal]:not(.hero) .container > *:not(.grid),
-html.anim [data-reveal] .grid > *{opacity:0}
-
-/* ---- layout ---- */
-.container{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad-x)}
-.section{padding:88px var(--pad-x)}
-.section--lg{padding:92px var(--pad-x)}
-.section--sm{padding:64px var(--pad-x)}
-.section--tint{background:var(--tint)}
-
-/* ---- typography ---- */
-.eyebrow{font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--brand);margin:0 0 12px}
-.eyebrow--sm{font-size:12px;letter-spacing:.14em}
-.eyebrow--light{color:#cfe6f7;letter-spacing:.18em}
-.section-title{font-weight:800;font-size:38px;line-height:1.12;letter-spacing:-.015em;color:var(--navy);margin:0 0 14px}
-.lead{font-size:16.5px;line-height:1.75;color:var(--text-soft);max-width:760px;margin:0 0 36px}
-
-/* ---- buttons ---- */
-.btn{display:inline-flex;align-items:center;gap:9px;background:var(--brand);color:#fff;font-weight:800;font-size:15px;text-decoration:none;padding:14px 30px;border-radius:30px;border:none;cursor:pointer;font-family:inherit;transition:background .2s ease,transform .2s ease}
-.btn:hover{background:var(--brand-dark)}
-.btn--block{width:100%;justify-content:center;height:52px;font-size:16px}
-.btn-book{display:inline-flex;align-items:center;background:var(--book);color:#fff;font-weight:700;font-size:13px;text-decoration:none;padding:10px 20px;border-radius:22px;transition:background .2s ease}
-.btn-book:hover{background:var(--brand-dark)}
-.btn-light{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--navy);font-weight:800;font-size:16px;text-decoration:none;padding:15px 34px;border-radius:30px;transition:transform .2s ease,box-shadow .2s ease}
-.btn-light:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.18)}
-.btn-ghost{display:inline-flex;align-items:center;gap:9px;border:1.5px solid rgba(255,255,255,.7);color:#fff;background:transparent;padding:15px 32px;border-radius:30px;font-weight:700;text-decoration:none;transition:background .2s ease}
-.btn-ghost:hover{background:rgba(255,255,255,.12)}
-.textlink{display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:15px;color:var(--brand);text-decoration:none}
-
-/* ---- cards + tiles ---- */
-.card{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 6px 18px rgba(20,50,75,.06);transition:transform .25s ease,box-shadow .25s ease}
-.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(20,50,75,.13)}
-.svc-tile{transition:transform .25s ease,box-shadow .25s ease}
-.svc-tile:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(20,50,75,.13)}
-.svc-tile:hover img{transform:scale(1.05)}
-.svc-tile img{transition:transform .5s ease}
-
-/* ---- grids + split ---- */
-.grid{display:grid;gap:30px}
-.grid--2{grid-template-columns:repeat(2,1fr)}
-.grid--3{grid-template-columns:repeat(3,1fr)}
-.grid--4{grid-template-columns:repeat(4,1fr)}
-.split{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
-.media{border-radius:14px;overflow:hidden}
-.media img{width:100%;height:100%;object-fit:cover}
-
-/* ---- nav ---- */
-.nav-link{position:relative;transition:color .18s ease}
-.nav-link:hover{color:var(--brand)}
-.nav-item{position:relative}
-.nav-item>.dropdown{position:absolute;top:100%;left:-14px;min-width:230px;background:#fff;border:1px solid var(--border-soft);border-radius:12px;box-shadow:0 18px 44px rgba(20,50,75,.16);padding:8px;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .2s ease,transform .2s ease;z-index:60}
-/* invisible bridge across the gap between the trigger and the panel, so moving
-   the cursor down onto the menu doesn't drop the :hover and close it */
-.nav-item>.dropdown::before{content:"";position:absolute;left:0;right:0;top:-12px;height:14px}
-.nav-item:hover>.dropdown{opacity:1;visibility:visible;transform:translateY(6px)}
-.dropdown a{display:block;padding:9px 13px;border-radius:8px;font-size:14px;font-weight:600;color:#42525f;text-decoration:none;transition:background .15s ease,color .15s ease}
-.dropdown a:hover{background:#f1f6fb;color:var(--brand)}
-.nav-burger{display:none}
-#navtoggle{display:none}
-
-/* ---- prose helpers ---- */
-.copy{font-size:16.5px;line-height:1.75;color:var(--text-soft);margin:0 0 18px}
-.copy:last-child{margin-bottom:0}
-.center{text-align:center}
-.mt-40{margin-top:40px}
-.quote{border-left:3px solid var(--brand);padding-left:18px;margin:6px 0 30px;font-style:italic;color:var(--navy);font-size:18px;line-height:1.6}
-.quote--card{border-left:4px solid var(--brand);background:#fff;border-radius:0 8px 8px 0;padding:18px 24px;margin:6px 0 28px;font-style:italic;color:var(--head);font-size:17px;line-height:1.7}
-
-/* ---- form focus ---- */
-input:focus,select:focus,textarea:focus{border-color:var(--brand) !important;box-shadow:0 0 0 3px rgba(24,105,179,.12)}
-
-/* ---- responsive (progressive enhancement; original was desktop-only) ---- */
-@media(max-width:980px){
-  .grid--3,.grid--4{grid-template-columns:repeat(2,1fr)}
-  .split,.contact-grid{grid-template-columns:1fr !important}
-  .split--media-first .media{order:-1}
-  .nav-desktop{display:none !important}
-  .nav-burger{display:flex !important}
-  #navtoggle:checked~.nav-mobile{display:flex !important}
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply font-sans text-ink bg-white antialiased; }
+  a { color: inherit; }
 }
-@media(max-width:640px){
-  .grid--2,.grid--3,.grid--4{grid-template-columns:1fr}
-  h1{font-size:36px !important}
-  .section-title{font-size:27px !important;line-height:1.15}
-  .section,.section--lg,.section--sm{padding-left:18px;padding-right:18px}
+
+/* ---- design-system atoms (kept as components for consistency) ---- */
+@layer components {
+  .container { @apply max-w-[1240px] mx-auto px-7; }
+  .section { @apply py-[88px] px-7; }
+  .section-sm { @apply py-16 px-7; }
+  .section-lg { @apply py-[92px] px-7; }
+
+  .eyebrow { @apply font-bold text-[13px] tracking-[.16em] uppercase text-brand mb-3; }
+  .eyebrow-light { @apply text-[#cfe6f7] tracking-[.18em]; }
+  .section-title { @apply font-extrabold text-[38px] leading-[1.12] tracking-[-.015em] text-navy mb-[14px] max-sm:text-[27px] max-sm:leading-[1.15]; }
+  .lead { @apply text-[16.5px] leading-[1.75] text-soft max-w-[760px] mb-9; }
+  .copy { @apply text-[16.5px] leading-[1.75] text-soft mb-[18px]; }
+  .copy:last-child { @apply mb-0; }
+  .quote { @apply border-l-[3px] border-brand pl-[18px] mt-[6px] mb-[30px] italic text-navy text-[18px] leading-[1.6]; }
+  .quote-card { @apply border-l-4 border-brand bg-white rounded-r-lg px-6 py-[18px] mt-[6px] mb-7 italic text-head text-[17px] leading-[1.7]; }
+
+  .btn { @apply inline-flex items-center gap-[9px] bg-brand text-white font-extrabold text-[15px] no-underline px-[30px] py-[14px] rounded-[30px] border-0 cursor-pointer transition-[background-color,transform] duration-200 hover:bg-brand-dark; }
+  .btn-block { @apply w-full justify-center h-[52px] text-base; }
+  .btn-book { @apply inline-flex items-center bg-book text-white font-bold text-[13px] no-underline px-5 py-[10px] rounded-[22px] transition-colors duration-200 hover:bg-brand-dark; }
+  .btn-light { @apply inline-flex items-center gap-[10px] bg-white text-navy font-extrabold text-base no-underline px-[34px] py-[15px] rounded-[30px] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(0,0,0,.18)]; }
+  .btn-ghost { @apply inline-flex items-center gap-[9px] border-[1.5px] border-white/70 text-white bg-transparent px-8 py-[15px] rounded-[30px] font-bold no-underline transition-colors duration-200 hover:bg-white/10; }
+  .textlink { @apply inline-flex items-center gap-[7px] font-extrabold text-[15px] text-brand no-underline; }
+
+  .card { @apply bg-white border border-line rounded-[10px] overflow-hidden shadow-[0_6px_18px_rgba(20,50,75,.06)] transition-[transform,box-shadow] duration-[250ms] hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(20,50,75,.13)]; }
 }
+
+/* ---- scroll reveal: GSAP drives the motion (see BaseLayout); this only pre-hides
+   the elements GSAP animates so there's no flash. No `.anim` on <html> (JS off or
+   prefers-reduced-motion) → nothing is hidden. Hooks are data-attributes, not styles. */
+html.anim [data-reveal] [data-reveal-root] > *:not([data-grid]),
+html.anim [data-reveal] [data-grid] > * { opacity: 0; }

@@ -7,26 +7,18 @@ const items = [
   { title: '5-star service', sub: 'Guaranteed every trip', icon: 'star' },
 ];
 ---
-<div class="grid grid--4 benefits">
+<div class="grid grid-cols-4 gap-6 max-[980px]:grid-cols-2 max-[640px]:grid-cols-1" data-grid>
   {items.map((it) => (
-    <div class="feat">
-      <span class="feat__chip">
+    <div class="flex items-center gap-[14px]">
+      <span class="shrink-0 w-[52px] h-[52px] rounded-[14px] bg-chip flex items-center justify-center">
         {it.icon === 'clock' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1869B3" stroke-width="1.7"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>}
         {it.icon === 'shield' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1869B3" stroke-width="1.7"><path d="M12 2l8 4v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6z"></path></svg>}
         {it.icon === 'star' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1869B3" stroke-width="1.7"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1L12 16.6 5.7 21l2.3-7.1-6-4.5h7.6z"></path></svg>}
       </span>
       <div>
-        <div class="feat__title">{it.title}</div>
-        <div class="feat__sub">{it.sub}</div>
+        <div class="font-extrabold text-[17px] text-navy-ink">{it.title}</div>
+        <div class="text-[13.5px] text-faint">{it.sub}</div>
       </div>
     </div>
   ))}
 </div>
-
-<style>
-  .benefits { gap: 24px; }
-  .feat { display: flex; align-items: center; gap: 14px; }
-  .feat__chip { flex: none; width: 52px; height: 52px; border-radius: 14px; background: var(--chip); display: flex; align-items: center; justify-content: center; }
-  .feat__title { font-weight: 800; font-size: 17px; color: var(--navy-ink); }
-  .feat__sub { font-size: 13.5px; color: var(--muted); }
-</style>

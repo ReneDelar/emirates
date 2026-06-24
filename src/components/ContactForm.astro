@@ -5,51 +5,41 @@ const serviceOptions = [
   'Sightseeing cruise', 'Yacht fishing', 'Water sports',
   'Yacht party', 'Romantic cruise', 'Corporate cruise',
 ];
+const field =
+  'w-full h-[46px] px-[15px] border border-[#d8e2ea] rounded-[10px] bg-white text-[15px] text-head outline-none transition-[border-color,box-shadow] focus:border-brand focus:ring-[3px] focus:ring-brand/15';
+const label = 'block font-semibold text-[13px] text-[#42525f] mb-[7px]';
 ---
-<div class="form-card">
-  <h3 class="form-card__title">Request a booking</h3>
-  <p class="form-card__sub">Fill in the form and we'll select the ideal yacht for you.</p>
+<div class="bg-tint border border-[#e7eef4] rounded-2xl p-[30px]">
+  <h3 class="font-bold text-[22px] text-head mb-1.5">Request a booking</h3>
+  <p class="text-[15px] leading-[1.6] text-mute mb-6">Fill in the form and we'll select the ideal yacht for you.</p>
   <form action="#" method="post">
-    <div class="form-row">
+    <div class="grid grid-cols-2 gap-[18px] mb-[18px] max-[520px]:grid-cols-1">
       <div>
-        <label for="cf-name">Your name</label>
-        <input id="cf-name" type="text" name="name" required placeholder="John Smith" class="field" />
+        <label class={label} for="cf-name">Your name</label>
+        <input id="cf-name" type="text" name="name" required placeholder="John Smith" class={field} />
       </div>
       <div>
-        <label for="cf-phone">Phone</label>
-        <input id="cf-phone" type="tel" name="phone" required placeholder="+971 00 000 0000" class="field" />
+        <label class={label} for="cf-phone">Phone</label>
+        <input id="cf-phone" type="tel" name="phone" required placeholder="+971 00 000 0000" class={field} />
       </div>
     </div>
-    <div class="form-row">
+    <div class="grid grid-cols-2 gap-[18px] mb-[18px] max-[520px]:grid-cols-1">
       <div>
-        <label for="cf-email">Email</label>
-        <input id="cf-email" type="email" name="email" placeholder="you@example.com" class="field" />
+        <label class={label} for="cf-email">Email</label>
+        <input id="cf-email" type="email" name="email" placeholder="you@example.com" class={field} />
       </div>
       <div>
-        <label for="cf-service">Yacht / service</label>
-        <select id="cf-service" name="service" class="field">
+        <label class={label} for="cf-service">Yacht / service</label>
+        <select id="cf-service" name="service" class={field}>
           {serviceOptions.map((o) => <option>{o}</option>)}
         </select>
       </div>
     </div>
-    <div class="form-full">
-      <label for="cf-message">Message</label>
-      <textarea id="cf-message" name="message" placeholder="Date, number of guests, any special requests…" class="field field--area"></textarea>
+    <div class="mb-5">
+      <label class={label} for="cf-message">Message</label>
+      <textarea id="cf-message" name="message" placeholder="Date, number of guests, any special requests…" class={`${field} !h-[96px] py-3 resize-y`}></textarea>
     </div>
-    <button type="submit" class="btn btn--block">Send request</button>
-    <p class="form-note">By sending you agree to be contacted by our team. We work round-the-clock, 24/7.</p>
+    <button type="submit" class="btn btn-block">Send request</button>
+    <p class="text-[12.5px] text-[#95a3ae] text-center mt-[14px]">By sending you agree to be contacted by our team. We work round-the-clock, 24/7.</p>
   </form>
 </div>
-
-<style>
-  .form-card { background: var(--tint); border: 1px solid #e7eef4; border-radius: 16px; padding: 30px; }
-  .form-card__title { font-weight: 700; font-size: 22px; color: var(--head); margin: 0 0 6px; }
-  .form-card__sub { font-size: 15px; line-height: 1.6; color: var(--text-mute); margin: 0 0 24px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
-  .form-full { margin-bottom: 20px; }
-  label { display: block; font-weight: 600; font-size: 13px; color: #42525f; margin-bottom: 7px; }
-  .field { width: 100%; height: 46px; padding: 0 15px; border: 1px solid #d8e2ea; border-radius: 10px; background: #fff; font-family: inherit; font-size: 15px; color: var(--head); outline: none; }
-  .field--area { height: 96px; padding: 12px 15px; resize: vertical; }
-  .form-note { font-size: 12.5px; color: #95a3ae; text-align: center; margin: 14px 0 0; }
-  @media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
-</style>

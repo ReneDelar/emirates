@@ -14,30 +14,22 @@ interface Props {
   cols?: string;
 }
 const { image, alt, eyebrow, title, tint = false, mediaFirst = false, mediaHeight = 440, sticky = false, align = 'center', cols } = Astro.props;
-const gridStyle = `align-items:${align};${cols ? `grid-template-columns:${cols};` : ''}`;
+const gridStyle = `align-items:${align};` + (cols ? `grid-template-columns:${cols};` : '');
+const mediaCls = [
+  'rounded-[14px] overflow-hidden shadow-[0_14px_36px_rgba(20,50,75,.14)]',
+  mediaFirst && 'order-[-1]',
+  sticky && 'sticky top-7 max-[980px]:static',
+].filter(Boolean).join(' ');
 ---
-<section class={`section fs${tint ? ' section--tint' : ''}`} data-reveal>
-  <div class="container fs__grid" style={gridStyle}>
-    <div class={`media fs__media${mediaFirst ? ' fs__media--first' : ''}${sticky ? ' fs__media--sticky' : ''}`} style={`height:${mediaHeight}px`}>
-      <Image src={image} alt={alt} />
+<section class={`section${tint ? ' bg-tint' : ''}`} data-reveal>
+  <div class="container grid grid-cols-2 gap-[50px] max-[980px]:!grid-cols-1" data-reveal-root style={gridStyle}>
+    <div class={mediaCls} style={`height:${mediaHeight}px`}>
+      <Image src={image} alt={alt} class="w-full h-full object-cover" />
     </div>
-    <div class="fs__body">
+    <div>
       <p class="eyebrow">{eyebrow}</p>
-      <h2 class="section-title fs__title">{title}</h2>
+      <h2 class="section-title mb-[18px]">{title}</h2>
       <slot />
     </div>
   </div>
 </section>
-
-<style>
-  .fs__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
-  .fs__media { box-shadow: 0 14px 36px rgba(20,50,75,.14); }
-  .fs__media--first { order: -1; }
-  .fs__media--sticky { position: sticky; top: 28px; }
-  .fs__title { margin-bottom: 18px; }
-  @media (max-width: 980px) {
-    .fs__grid { grid-template-columns: 1fr !important; }
-    .fs__media--sticky { position: static; }
-    .fs__media--first { order: -1; }
-  }
-</style>

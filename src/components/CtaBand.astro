@@ -9,24 +9,13 @@ const {
   cta = 'Book a yacht now →',
 } = Astro.props;
 ---
-<section class="cta" data-reveal>
-  <Image src={images['turquoise-sea']} alt="Turquoise sea" class="cta__bg" widths={[768, 1280, 1920]} sizes="100vw" />
-  <div class="cta__overlay"></div>
-  <div class="cta__inner">
-    <p class="cta__eyebrow">{eyebrow}</p>
-    <h2 class="cta__title">{title}</h2>
-    <p class="cta__text">{text}</p>
+<section class="relative py-[92px] px-7 overflow-hidden" data-reveal>
+  <Image src={images['turquoise-sea']} alt="Turquoise sea" class="absolute inset-0 w-full h-full object-cover" widths={[768, 1280, 1920]} sizes="100vw" />
+  <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,105,179,.86),rgba(18,80,140,.9))]"></div>
+  <div class="relative max-w-[900px] mx-auto text-center text-white" data-reveal-root>
+    <p class="font-bold text-[13px] tracking-[.18em] uppercase text-[#cfe6f7] mb-[14px]">{eyebrow}</p>
+    <h2 class="font-extrabold text-[42px] leading-[1.1] tracking-[-.015em] mb-[18px] max-sm:text-[28px]">{title}</h2>
+    <p class="text-[17px] leading-[1.7] text-[#e7f1fa] mx-auto mb-7 max-w-[680px]">{text}</p>
     <a class="btn-light" href="/contacts">{cta}</a>
   </div>
 </section>
-
-<style>
-  .cta { position: relative; padding: 92px var(--pad-x); overflow: hidden; }
-  .cta__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .cta__overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(24,105,179,.86), rgba(18,80,140,.9)); }
-  .cta__inner { position: relative; max-width: 900px; margin: 0 auto; text-align: center; color: #fff; }
-  .cta__eyebrow { font-weight: 700; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: #cfe6f7; margin: 0 0 14px; }
-  .cta__title { font-weight: 800; font-size: 42px; line-height: 1.1; letter-spacing: -.015em; margin: 0 0 18px; }
-  .cta__text { font-size: 17px; line-height: 1.7; color: #e7f1fa; margin: 0 auto 28px; max-width: 680px; }
-  @media (max-width: 640px) { .cta__title { font-size: 28px; } }
-</style>

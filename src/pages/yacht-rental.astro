@@ -32,7 +32,7 @@ import { includedOnBoard } from '../data/content';
       title="Our yacht fleet"
       lead="Our extensive fleet offers a wide range of modern Azimut yachts equipped with the latest features and amenities. Every model meets the highest technical and safety standards — pick the vessel that fits your group and your day on the water."
     />
-    <div class="grid grid--3">{fleet.map((y) => <YachtCard yacht={y} />)}</div>
+    <div class="grid grid-cols-3 gap-[30px] max-[980px]:grid-cols-2 max-[640px]:grid-cols-1" data-grid>{fleet.map((y) => <YachtCard yacht={y} />)}</div>
   </Section>
 
   <Section tint size="sm"><Benefits /></Section>
@@ -57,7 +57,7 @@ import { includedOnBoard } from '../data/content';
   >
     <p class="copy">Escape from unnecessary thoughts and immerse yourself in the world of luxury. Relax in spacious cabins, unwind in the expansive saloon and soak up the sun in the jacuzzi on the flybridge — cruising along the legendary coastline with breathtaking views of the Burj Khalifa and Palm Jumeirah.</p>
     <p class="copy">Whether you're planning a romantic dinner, a vibrant celebration with friends or an unforgettable family adventure, our professional team anticipates and satisfies your every need — even for the most demanding guest.</p>
-    <blockquote class="quote--card">"We're waiting for you on the luxurious deck with a glass of sparkling wine in your hands — five-star service is guaranteed."</blockquote>
+    <blockquote class="quote-card">"We're waiting for you on the luxurious deck with a glass of sparkling wine in your hands — five-star service is guaranteed."</blockquote>
     <a href="/contacts" class="btn">Request a booking</a>
   </FeatureSplit>
 

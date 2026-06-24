@@ -7,13 +7,9 @@ interface Props {
   scrollAnchor?: boolean;
 }
 const { tint = false, size = 'md', id, reveal = true, scrollAnchor = false } = Astro.props;
-const cls = [
-  'section',
-  size === 'sm' && 'section--sm',
-  size === 'lg' && 'section--lg',
-  tint && 'section--tint',
-].filter(Boolean).join(' ');
+const sizeCls = size === 'sm' ? 'section-sm' : size === 'lg' ? 'section-lg' : 'section';
+const cls = [sizeCls, tint && 'bg-tint', scrollAnchor && 'scroll-mt-[90px]'].filter(Boolean).join(' ');
 ---
-<section class={cls} id={id} data-reveal={reveal ? '' : undefined} style={scrollAnchor ? 'scroll-margin-top:90px' : undefined}>
-  <div class="container"><slot /></div>
+<section class={cls} id={id} data-reveal={reveal ? '' : undefined}>
+  <div class="container" data-reveal-root><slot /></div>
 </section>

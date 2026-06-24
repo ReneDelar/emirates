@@ -5,10 +5,11 @@ Built with [Astro](https://astro.build): component-based source, static HTML out
 
 ## Tech stack
 
-- **Astro 5** — static site generator. Zero client-side framework; ships plain HTML/CSS.
-- **astro:assets** — images are imported and auto-optimized to responsive WebP at build time.
+- **Astro 5** — static site generator. Component-based source, ships static HTML.
+- **Tailwind CSS v4** (`@tailwindcss/vite`) — utility-first styling. Design tokens live in the `@theme` block in `src/styles/global.css`; a few repeated atoms (`.btn`, `.card`, `.eyebrow`, `.section-title`, `.container`, …) are defined there with `@apply`, the rest is utilities in the markup.
+- **GSAP + ScrollTrigger** — hero entrance timeline and staggered scroll-reveal animations (see `src/layouts/BaseLayout.astro`). Hooks are `data-` attributes (`data-reveal`, `data-reveal-root`, `data-grid`, `data-hero`) so motion is decoupled from styling. Honors `prefers-reduced-motion`.
+- **astro:assets** — images imported and auto-optimized to responsive WebP at build time.
 - **@astrojs/sitemap** — `sitemap-index.xml` generated on build.
-- Plain CSS with design tokens (CSS custom properties) in `src/styles/global.css` + scoped component styles. No CSS framework.
 
 ## Commands
 
@@ -51,7 +52,7 @@ Most copy lives in `src/data/*.ts`, so changes don't require touching markup:
 - **Fishing regions** → `src/data/regions.ts`
 - **"What's included", advantages, fishing gear, landmarks** → `src/data/content.ts`
 - **Header navigation / footer links** → `src/components/Header.astro`, `src/components/Footer.astro`
-- **Colors / typography** → the `:root` tokens in `src/styles/global.css`
+- **Colors / typography** → the `@theme` tokens in `src/styles/global.css` (e.g. `--color-brand`), exposed as Tailwind utilities like `text-brand` / `bg-navy`
 
 ## Deployment
 

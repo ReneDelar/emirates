@@ -4,29 +4,19 @@ import type { Yacht } from '../data/fleet';
 interface Props { yacht: Yacht }
 const { yacht } = Astro.props;
 ---
-<article class="card yc">
-  <div class="yc__media">
-    <Image src={yacht.image} alt={yacht.alt} class="yc__img" />
-    {yacht.bestseller && <span class="yc__badge">Bestseller</span>}
+<article class="card">
+  <div class="relative h-[228px]">
+    <Image src={yacht.image} alt={yacht.alt} class="w-full h-full object-cover" />
+    {yacht.bestseller && (
+      <span class="absolute left-[14px] top-[14px] bg-badge text-white font-bold text-[12px] px-3 py-[5px] rounded-[5px] shadow-[0_2px_6px_rgba(0,0,0,.18)]">Bestseller</span>
+    )}
   </div>
-  <div class="yc__body">
-    <h3 class="yc__name">{yacht.name}</h3>
-    <p class="yc__cap">{yacht.capacity}</p>
-    <div class="yc__row">
-      <div><span class="yc__amt">{yacht.price}</span><span class="yc__per">{yacht.per}</span></div>
+  <div class="pt-[18px] px-5 pb-5">
+    <h3 class="font-bold text-[20px] text-head mb-1.5">{yacht.name}</h3>
+    <p class="text-[14px] text-faint mb-4">{yacht.capacity}</p>
+    <div class="flex items-center justify-between gap-[10px]">
+      <div><span class="text-navy font-extrabold text-base">{yacht.price}</span><span class="text-[#8a98a4] font-semibold text-[13px]">{yacht.per}</span></div>
       <a href="/contacts" class="btn-book">Book Now</a>
     </div>
   </div>
 </article>
-
-<style>
-  .yc__media { position: relative; height: 228px; }
-  .yc__img { width: 100%; height: 100%; object-fit: cover; }
-  .yc__badge { position: absolute; left: 14px; top: 14px; background: var(--badge); color: #fff; font-weight: 700; font-size: 12px; padding: 5px 12px; border-radius: 5px; box-shadow: 0 2px 6px rgba(0,0,0,.18); }
-  .yc__body { padding: 18px 20px 20px; }
-  .yc__name { font-weight: 700; font-size: 20px; color: var(--head); margin: 0 0 6px; }
-  .yc__cap { font-size: 14px; color: var(--muted); margin: 0 0 16px; }
-  .yc__row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-  .yc__amt { color: var(--navy); font-weight: 800; font-size: 16px; }
-  .yc__per { color: #8a98a4; font-weight: 600; font-size: 13px; }
-</style>

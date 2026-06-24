@@ -4,21 +4,16 @@ import type { Service } from '../data/services';
 interface Props { service: Service; reversed?: boolean; tint?: boolean }
 const { service, reversed = false, tint = false } = Astro.props;
 ---
-<section class={`section row${tint ? ' section--tint' : ''}`} id={service.id} data-reveal style="scroll-margin-top:90px">
-  <div class={`container split${reversed ? ' is-rev' : ''}`}>
-    <div class="media row__media"><Image src={service.image} alt={service.alt} /></div>
-    <div class="row__body">
+<section class={`section scroll-mt-[90px]${tint ? ' bg-tint' : ''}`} id={service.id} data-reveal>
+  <div class="container grid grid-cols-2 gap-[50px] items-center max-[980px]:grid-cols-1" data-reveal-root>
+    <div class={`rounded-[14px] overflow-hidden h-[360px] shadow-[0_10px_28px_rgba(20,50,75,.10)]${reversed ? ' order-2' : ''}`}>
+      <Image src={service.image} alt={service.alt} class="w-full h-full object-cover" />
+    </div>
+    <div>
       <p class="eyebrow">{service.category}</p>
-      <h2 class="row__title">{service.title}</h2>
-      <p class="row__text">{service.full}</p>
+      <h2 class="font-extrabold text-[32px] leading-[1.14] tracking-[-.015em] text-navy mb-4">{service.title}</h2>
+      <p class="text-[16.5px] leading-[1.75] text-soft mb-[26px]">{service.full}</p>
       <a href="/contacts" class="btn">Book this cruise</a>
     </div>
   </div>
 </section>
-
-<style>
-  .row__media { height: 360px; box-shadow: 0 10px 28px rgba(20,50,75,.10); }
-  .row__title { font-weight: 800; font-size: 32px; line-height: 1.14; letter-spacing: -.015em; color: var(--navy); margin: 0 0 16px; }
-  .row__text { font-size: 16.5px; line-height: 1.75; color: var(--text-soft); margin: 0 0 26px; }
-  .is-rev .row__media { order: 2; }
-</style>
