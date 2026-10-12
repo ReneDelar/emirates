@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import Benefits from '../../components/Benefits.astro';
+import YachtCard from '../../components/YachtCard.astro';
+import ServiceTile from '../../components/ServiceTile.astro';
+import Checklist from '../../components/Checklist.astro';
+import FeatureSplit from '../../components/FeatureSplit.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { images } from '../../assets/images';
+import { getFleet } from '../../data/fleet';
+import { getServices } from '../../data/services';
+import { useI18n, langStaticPaths } from '../../i18n';
+
+export function getStaticPaths() {
+  return langStaticPaths();
+}
+
+const { lang, t, path } = useI18n(Astro.url);
+const p = t.pages.home;
+const grid3 = 'grid grid-cols-3 gap-[30px] max-[980px]:grid-cols-2 max-[640px]:grid-cols-1';
+---
+<BaseLayout title={p.title} description={p.description} active="home">
+  <Hero
+    image={images['luxury-yacht-on-turquoise-water']}
+    alt={p.hero.alt}
+    eyebrow={p.hero.eyebrow}
+    title={p.hero.title}
+    subtitle={p.hero.subtitle}
+    minHeight={560}
+    titleSize={60}
+    padY={64}
+  >
+    <div class="flex flex-wrap items-center gap-4 mt-[34px]">
+      <a href={path('/yacht-rental')} class="btn-light">{p.hero.fleet}</a>
+      <a href={path('/contacts')} class="btn-ghost">{p.hero.contact}</a>
+    </div>
+  </Hero>
+
+  <Section tint size="sm"><Benefits /></Section>
+
+  <Section>
+    <SectionHeading eyebrow={p.fleet.eyebrow} title={p.fleet.title} lead={p.fleet.lead} />
+    <div class={grid3} data-grid>{getFleet(lang).map((y) => <YachtCard yacht={y} />)}</div>
+    <div class="text-center mt-10"><a href={path('/yacht-rental')} class="textlink">{p.fleet.all}</a></div>
+  </Section>
+
+  <FeatureSplit
+    image={images['dubai-coastline']}
+    alt={p.welcome.alt}
+    eyebrow={p.welcome.eyebrow}
+    title={p.welcome.title}
+    tint
+    mediaFirst
+    mediaHeight={460}
+    cols="1fr 1fr"
+  >
+    <p class="copy">{p.welcome.p1}</p>
+    <p class="copy">{p.welcome.p2}</p>
+    <a href={path('/about')} class="btn mt-[10px]">{p.welcome.button}</a>
+  </FeatureSplit>
+
+  <Section>
+    <SectionHeading eyebrow={p.services.eyebrow} title={p.services.title} lead={p.services.lead} />
+    <div class={grid3} data-grid>{getServices(lang).map((s) => <ServiceTile service={s} />)}</div>
+  </Section>
+
+  <Section tint>
+    <SectionHeading eyebrow={p.advantages.eyebrow} title={p.advantages.title} />
+    <Checklist items={t.lists.advantagesHome} cols={2} gap="16px 40px" />
+  </Section>
+
+  <CtaBand />
+</BaseLayout>

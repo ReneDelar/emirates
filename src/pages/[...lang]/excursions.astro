@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import Benefits from '../../components/Benefits.astro';
+import ServiceRow from '../../components/ServiceRow.astro';
+import Pills from '../../components/Pills.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { images } from '../../assets/images';
+import { getServices } from '../../data/services';
+import { useI18n, langStaticPaths } from '../../i18n';
+
+export function getStaticPaths() {
+  return langStaticPaths();
+}
+
+const { lang, t } = useI18n(Astro.url);
+const p = t.pages.excursions;
+---
+<BaseLayout title={p.title} description={p.description} active="excursions">
+  <Hero
+    image={images['dubai-sightseeing']}
+    alt={p.hero.alt}
+    breadcrumb={t.nav.excursions}
+    title={p.hero.title}
+    subtitle={p.hero.subtitle}
+  />
+
+  <Section>
+    <SectionHeading eyebrow={p.intro.eyebrow} title={p.intro.title} titleMax={760} lead={p.intro.lead} />
+    <Benefits />
+  </Section>
+
+  {getServices(lang).map((s, i) => <ServiceRow service={s} reversed={i % 2 === 1} tint={i % 2 === 0} />)}
+
+  <Section tint>
+    <SectionHeading eyebrow={p.sights.eyebrow} title={p.sights.title} titleMax={760} lead={p.sights.lead} />
+    <Pills items={t.lists.landmarks} />
+  </Section>
+
+  <CtaBand />
+</BaseLayout>

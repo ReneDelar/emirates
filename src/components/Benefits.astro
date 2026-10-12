@@ -1,11 +1,9 @@
 ---
 // The four standing trust signals. Rendered as a 4-up grid (wrap in a Section in the page).
-const items = [
-  { title: '24/7 booking', sub: 'We work round-the-clock', icon: 'clock' },
-  { title: 'Fully insured', sub: 'Every guest onboard', icon: 'shield' },
-  { title: 'Licensed crew', sub: 'Captain & professionals', icon: 'star' },
-  { title: '5-star service', sub: 'Guaranteed every trip', icon: 'star' },
-];
+import { useI18n } from '../i18n';
+const { t } = useI18n(Astro.url);
+const icons = ['clock', 'shield', 'star', 'star'];
+const items = t.benefits.map((b, i) => ({ ...b, icon: icons[i] }));
 ---
 <div class="grid grid-cols-4 gap-6 max-[980px]:grid-cols-2 max-[640px]:grid-cols-1" data-grid>
   {items.map((it) => (

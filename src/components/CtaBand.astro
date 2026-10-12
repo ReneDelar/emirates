@@ -1,21 +1,23 @@
 ---
 import { Image } from 'astro:assets';
 import { images } from '../assets/images';
+import { useI18n } from '../i18n';
 interface Props { eyebrow?: string; title?: string; text?: string; cta?: string }
+const { t, path } = useI18n(Astro.url);
 const {
-  eyebrow = 'Rent yachts in Dubai',
-  title = 'Book your yacht with Emirates Fishing Tour today',
-  text = 'It is easy to rent a yacht in Dubai — just contact our specialists. We help you choose and book any yacht, plan your route and arrange every detail. Our team works 24/7.',
-  cta = 'Book a yacht now →',
+  eyebrow = t.cta.eyebrow,
+  title = t.cta.title,
+  text = t.cta.text,
+  cta = t.cta.button,
 } = Astro.props;
 ---
 <section class="relative py-[92px] px-7 overflow-hidden" data-reveal>
-  <Image src={images['turquoise-sea']} alt="Turquoise sea" class="absolute inset-0 w-full h-full object-cover" widths={[768, 1280, 1920]} sizes="100vw" />
+  <Image src={images['turquoise-sea']} alt={t.cta.imageAlt} class="absolute inset-0 w-full h-full object-cover" widths={[768, 1280, 1920]} sizes="100vw" />
   <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,105,179,.86),rgba(18,80,140,.9))]"></div>
   <div class="relative max-w-[900px] mx-auto text-center text-white" data-reveal-root>
     <p class="font-bold text-[13px] tracking-[.18em] uppercase text-[#cfe6f7] mb-[14px]">{eyebrow}</p>
     <h2 class="font-extrabold text-[42px] leading-[1.1] tracking-[-.015em] mb-[18px] max-sm:text-[28px]">{title}</h2>
     <p class="text-[17px] leading-[1.7] text-[#e7f1fa] mx-auto mb-7 max-w-[680px]">{text}</p>
-    <a class="btn-light" href="/contacts">{cta}</a>
+    <a class="btn-light" href={path('/contacts')}>{cta}</a>
   </div>
 </section>

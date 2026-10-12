@@ -1,8 +1,10 @@
 ---
 import { Image } from 'astro:assets';
 import type { Region } from '../data/regions';
+import { useI18n } from '../i18n';
 interface Props { region: Region }
 const { region } = Astro.props;
+const { t, path } = useI18n(Astro.url);
 ---
 <article class="card rounded-[12px] scroll-mt-[90px]" id={region.id}>
   <div class="h-[230px] overflow-hidden">
@@ -11,6 +13,6 @@ const { region } = Astro.props;
   <div class="pt-6 px-[26px] pb-[26px]">
     <h3 class="font-bold text-[22px] text-head mb-[10px]">{region.title}</h3>
     <p class="text-[15.5px] leading-[1.7] text-mute mb-[18px]">{region.text}</p>
-    <a href="/contacts" class="textlink !text-[14.5px]">Plan a trip &rarr;</a>
+    <a href={path('/contacts')} class="textlink !text-[14.5px]">{t.cards.planTrip}</a>
   </div>
 </article>

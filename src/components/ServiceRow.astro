@@ -1,8 +1,10 @@
 ---
 import { Image } from 'astro:assets';
 import type { Service } from '../data/services';
+import { useI18n } from '../i18n';
 interface Props { service: Service; reversed?: boolean; tint?: boolean }
 const { service, reversed = false, tint = false } = Astro.props;
+const { t, path } = useI18n(Astro.url);
 ---
 <section class={`section scroll-mt-[90px]${tint ? ' bg-tint' : ''}`} id={service.id} data-reveal>
   <div class="container grid grid-cols-2 gap-[50px] items-center max-[980px]:grid-cols-1" data-reveal-root>
@@ -13,7 +15,7 @@ const { service, reversed = false, tint = false } = Astro.props;
       <p class="eyebrow">{service.category}</p>
       <h2 class="font-extrabold text-[32px] leading-[1.14] tracking-[-.015em] text-navy mb-4">{service.title}</h2>
       <p class="text-[16.5px] leading-[1.75] text-soft mb-[26px]">{service.full}</p>
-      <a href="/contacts" class="btn">Book this cruise</a>
+      <a href={path('/contacts')} class="btn">{t.cards.bookCruise}</a>
     </div>
   </div>
 </section>

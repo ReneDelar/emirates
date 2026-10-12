@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import { useI18n } from '../i18n';
 
 interface Props {
   image: ImageMetadata;
@@ -14,6 +15,7 @@ interface Props {
   padY?: number;
 }
 const { image, alt, title, breadcrumb, eyebrow, subtitle, minHeight = 430, titleSize = 56, padY = 0 } = Astro.props;
+const { t, path } = useI18n(Astro.url);
 const titleMax = titleSize >= 60 ? 800 : 760;
 ---
 <section class="relative flex items-center overflow-hidden" data-reveal data-hero style={`min-height:${minHeight}px`}>
@@ -22,7 +24,7 @@ const titleMax = titleSize >= 60 ? 800 : 760;
   <div class="container relative w-full" data-reveal-root style={padY ? `padding-top:${padY}px;padding-bottom:${padY}px` : undefined}>
     {breadcrumb && (
       <div class="flex items-center gap-[9px] font-semibold text-[13.5px] text-[#dce8f2] mb-[22px]">
-        <a href="/" class="text-white no-underline">Home</a><span class="opacity-[.55]">/</span><span class="opacity-90">{breadcrumb}</span>
+        <a href={path('/')} class="text-white no-underline">{t.nav.home}</a><span class="opacity-[.55]">/</span><span class="opacity-90">{breadcrumb}</span>
       </div>
     )}
     {eyebrow && <p class="eyebrow eyebrow-light">{eyebrow}</p>}

@@ -1,15 +1,17 @@
 ---
 import { Image } from 'astro:assets';
 import logoWhite from '../assets/logo-white.png';
+import { useI18n } from '../i18n';
+const { t, path } = useI18n(Astro.url);
 const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'About Us', href: '/about' },
-  { label: 'Fishing regions', href: '/fishing-regions' },
-  { label: 'Yacht Rental', href: '/yacht-rental' },
-  { label: 'Excursions Dubai', href: '/excursions' },
-  { label: 'Contacts', href: '/contacts' },
+  { label: t.nav.home, href: path('/') },
+  { label: t.nav.about, href: path('/about') },
+  { label: t.nav.regions, href: path('/fishing-regions') },
+  { label: t.nav.yachts, href: path('/yacht-rental') },
+  { label: t.nav.excursions, href: path('/excursions') },
+  { label: t.nav.contacts, href: path('/contacts') },
 ];
-const excursions = ['Sightseeing Cruises', 'Yacht Fishing', 'Water Sports', 'Yacht Party', 'Romantic Cruise', 'Corporate Cruise'];
+const excursions = Object.entries(t.excursionLinks).map(([id, label]) => ({ label, href: path(`/excursions#${id}`) }));
 const link = 'text-[#9fb4c6] no-underline text-[14px] leading-[2.1] transition-colors duration-150 hover:text-white';
 const head = 'text-white text-[14px] tracking-[.04em] mb-3 uppercase';
 ---
@@ -20,30 +22,30 @@ const head = 'text-white text-[14px] tracking-[.04em] mb-3 uppercase';
       <div class="flex items-center mb-4">
         <Image src={logoWhite} alt="Emirates Fishing Tour" class="h-[30px] w-auto block" />
       </div>
-      <p class="text-[14.5px] leading-[1.7] max-w-[300px]">Luxury yacht rental, fishing trips and bespoke cruises in Dubai. Fully insured, licensed crew, five-star service — 24/7.</p>
+      <p class="text-[14.5px] leading-[1.7] max-w-[300px]">{t.footer.about}</p>
     </div>
 
     <div class="flex flex-col">
-      <h4 class={head}>Navigation</h4>
+      <h4 class={head}>{t.footer.navigation}</h4>
       {navLinks.map((l) => <a class={link} href={l.href}>{l.label}</a>)}
     </div>
 
     <div class="flex flex-col">
-      <h4 class={head}>Excursions</h4>
-      {excursions.map((s) => <a class={link} href="/excursions">{s}</a>)}
+      <h4 class={head}>{t.footer.excursions}</h4>
+      {excursions.map((s) => <a class={link} href={s.href}>{s.label}</a>)}
     </div>
 
     <div class="flex flex-col">
-      <h4 class={head}>Get in touch</h4>
+      <h4 class={head}>{t.footer.contact}</h4>
       <a href="tel:+971000000000" class="text-[#cfe0ee] no-underline font-bold text-base mb-1.5">+971 00 000 0000</a>
-      <a class={link} href="https://wa.me/971000000000">WhatsApp us</a>
+      <a class={link} href="https://wa.me/971000000000">{t.footer.whatsapp}</a>
       <a class={link} href="mailto:info@emiratesfishingtour.com">info@emiratesfishingtour.com</a>
-      <span class="text-[#9fb4c6] text-[14px] leading-[2]">Dubai Marina, UAE</span>
+      <span class="text-[#9fb4c6] text-[14px] leading-[2]">{t.footer.location}</span>
     </div>
   </div>
 
   <div class="container mt-[38px] pt-[18px] pb-[18px] border-t border-white/[.12] flex flex-wrap justify-between gap-2.5">
-    <p class="m-0 text-[13.5px]">&copy; 2024 Emirates Fishing Tour &middot; Yacht Rental Dubai &middot; All rights reserved</p>
-    <p class="m-0 text-[13.5px]">Built with Astro &amp; Tailwind &middot; emiratesfishingtour.com</p>
+    <p class="m-0 text-[13.5px]">&copy; 2024 Emirates Fishing Tour &middot; {t.footer.rights}</p>
+    <p class="m-0 text-[13.5px]">{t.footer.built} &middot; emiratesfishingtour.com</p>
   </div>
 </footer>

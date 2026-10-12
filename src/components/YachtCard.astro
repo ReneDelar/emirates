@@ -1,14 +1,16 @@
 ---
 import { Image } from 'astro:assets';
 import type { Yacht } from '../data/fleet';
+import { useI18n } from '../i18n';
 interface Props { yacht: Yacht }
 const { yacht } = Astro.props;
+const { t, path } = useI18n(Astro.url);
 ---
 <article class="card">
   <div class="relative h-[228px]">
     <Image src={yacht.image} alt={yacht.alt} class="w-full h-full object-cover" />
     {yacht.bestseller && (
-      <span class="absolute left-[14px] top-[14px] bg-badge text-white font-bold text-[12px] px-3 py-[5px] rounded-[5px] shadow-[0_2px_6px_rgba(0,0,0,.18)]">Bestseller</span>
+      <span class="absolute left-[14px] top-[14px] bg-badge text-white font-bold text-[12px] px-3 py-[5px] rounded-[5px] shadow-[0_2px_6px_rgba(0,0,0,.18)]">{t.cards.bestseller}</span>
     )}
   </div>
   <div class="pt-[18px] px-5 pb-5">
@@ -16,7 +18,7 @@ const { yacht } = Astro.props;
     <p class="text-[14px] text-faint mb-4">{yacht.capacity}</p>
     <div class="flex items-center justify-between gap-[10px]">
       <div><span class="text-navy font-extrabold text-base">{yacht.price}</span><span class="text-[#8a98a4] font-semibold text-[13px]">{yacht.per}</span></div>
-      <a href="/contacts" class="btn-book">Book Now</a>
+      <a href={path('/contacts')} class="btn-book">{t.cards.bookNow}</a>
     </div>
   </div>
 </article>
