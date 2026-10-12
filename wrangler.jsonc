@@ -1,0 +1,9 @@
+// Cloudflare Workers deploy config: the site is fully static, so the Worker
+// only serves the Astro build output from ./dist (no Worker script).
+{
+  "name": "emirates",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist"
+  }
+}

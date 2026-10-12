@@ -1,45 +1,49 @@
 ---
 // Presentational booking form (no backend yet — see README "Make the form send").
+import { useI18n } from '../i18n';
+import { getFleet } from '../data/fleet';
+const { lang, t } = useI18n(Astro.url);
+// Option values stay language-neutral ids so submissions are identical across locales.
 const serviceOptions = [
-  'Azimut 50', 'Azimut 58', 'Azimut 62',
-  'Sightseeing cruise', 'Yacht fishing', 'Water sports',
-  'Yacht party', 'Romantic cruise', 'Corporate cruise',
+  ...getFleet(lang).map((y) => ({ value: y.id, label: y.name })),
+  ...Object.entries(t.excursionLinks).map(([value, label]) => ({ value, label })),
 ];
 const field =
   'w-full h-[46px] px-[15px] border border-[#d8e2ea] rounded-[10px] bg-white text-[15px] text-head outline-none transition-[border-color,box-shadow] focus:border-brand focus:ring-[3px] focus:ring-brand/15';
 const label = 'block font-semibold text-[13px] text-[#42525f] mb-[7px]';
 ---
 <div class="bg-tint border border-[#e7eef4] rounded-2xl p-[30px]">
-  <h3 class="font-bold text-[22px] text-head mb-1.5">Request a booking</h3>
-  <p class="text-[15px] leading-[1.6] text-mute mb-6">Fill in the form and we'll select the ideal yacht for you.</p>
+  <h3 class="font-bold text-[22px] text-head mb-1.5">{t.form.title}</h3>
+  <p class="text-[15px] leading-[1.6] text-mute mb-6">{t.form.lead}</p>
   <form action="#" method="post">
+    <input type="hidden" name="lang" value={lang} />
     <div class="grid grid-cols-2 gap-[18px] mb-[18px] max-[520px]:grid-cols-1">
       <div>
-        <label class={label} for="cf-name">Your name</label>
-        <input id="cf-name" type="text" name="name" required placeholder="John Smith" class={field} />
+        <label class={label} for="cf-name">{t.form.name}</label>
+        <input id="cf-name" type="text" name="name" required placeholder={t.form.namePlaceholder} class={field} />
       </div>
       <div>
-        <label class={label} for="cf-phone">Phone</label>
+        <label class={label} for="cf-phone">{t.form.phone}</label>
         <input id="cf-phone" type="tel" name="phone" required placeholder="+971 00 000 0000" class={field} />
       </div>
     </div>
     <div class="grid grid-cols-2 gap-[18px] mb-[18px] max-[520px]:grid-cols-1">
       <div>
-        <label class={label} for="cf-email">Email</label>
+        <label class={label} for="cf-email">{t.form.email}</label>
         <input id="cf-email" type="email" name="email" placeholder="you@example.com" class={field} />
       </div>
       <div>
-        <label class={label} for="cf-service">Yacht / service</label>
+        <label class={label} for="cf-service">{t.form.service}</label>
         <select id="cf-service" name="service" class={field}>
-          {serviceOptions.map((o) => <option>{o}</option>)}
+          {serviceOptions.map((o) => <option value={o.value}>{o.label}</option>)}
         </select>
       </div>
     </div>
     <div class="mb-5">
-      <label class={label} for="cf-message">Message</label>
-      <textarea id="cf-message" name="message" placeholder="Date, number of guests, any special requests…" class={`${field} !h-[96px] py-3 resize-y`}></textarea>
+      <label class={label} for="cf-message">{t.form.message}</label>
+      <textarea id="cf-message" name="message" placeholder={t.form.messagePlaceholder} class={`${field} !h-[96px] py-3 resize-y`}></textarea>
     </div>
-    <button type="submit" class="btn btn-block">Send request</button>
-    <p class="text-[12.5px] text-[#95a3ae] text-center mt-[14px]">By sending you agree to be contacted by our team. We work round-the-clock, 24/7.</p>
+    <button type="submit" class="btn btn-block">{t.form.submit}</button>
+    <p class="text-[12.5px] text-[#95a3ae] text-center mt-[14px]">{t.form.consent}</p>
   </form>
 </div>

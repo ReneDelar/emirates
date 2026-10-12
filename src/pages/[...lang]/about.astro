@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Section from '../../components/Section.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import FeatureSplit from '../../components/FeatureSplit.astro';
+import Checklist from '../../components/Checklist.astro';
+import Stats from '../../components/Stats.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { images } from '../../assets/images';
+import { useI18n, langStaticPaths } from '../../i18n';
+
+export function getStaticPaths() {
+  return langStaticPaths();
+}
+
+const { t, path } = useI18n(Astro.url);
+const p = t.pages.about;
+---
+<BaseLayout title={p.title} description={p.description} active="about">
+  <Hero
+    image={images['luxury-yacht']}
+    alt={p.hero.alt}
+    breadcrumb={t.nav.about}
+    title={p.hero.title}
+    subtitle={p.hero.subtitle}
+  />
+
+  <FeatureSplit
+    image={images['luxury-yacht']}
+    alt={p.welcome.alt}
+    eyebrow={p.welcome.eyebrow}
+    title={p.welcome.title}
+    align="start"
+    sticky
+    mediaHeight={440}
+    cols="1.05fr .95fr"
+  >
+    {p.welcome.paragraphs.map((text) => <p class="copy">{text}</p>)}
+  </FeatureSplit>
+
+  <Stats items={p.stats} />
+
+  <Section tint>
+    <SectionHeading eyebrow={p.included.eyebrow} title={p.included.title} lead={p.included.lead} />
+    <Checklist items={t.lists.included} cols={3} gap="26px 40px" />
+  </Section>
+
+  <Section>
+    <SectionHeading eyebrow={p.advantages.eyebrow} title={p.advantages.title} lead={p.advantages.lead} />
+    <Checklist items={t.lists.advantagesFull} cols={2} gap="26px 48px" />
+  </Section>
+
+  <FeatureSplit
+    image={images['yacht-cabin-interior']}
+    alt={p.dreamAlt}
+    eyebrow={t.dream.eyebrow}
+    title={t.dream.title}
+    tint
+    mediaFirst
+    mediaHeight={400}
+    cols=".95fr 1.05fr"
+  >
+    <p class="copy">{t.dream.p1}</p>
+    <p class="copy">{t.dream.p2}</p>
+    <blockquote class="quote">{t.dream.quote}</blockquote>
+    <a href={path('/contacts')} class="btn">{p.dreamButton}</a>
+  </FeatureSplit>
+
+  <CtaBand />
+</BaseLayout>
