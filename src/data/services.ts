@@ -14,7 +14,7 @@ export interface Service {
 
 const base = [
   { id: 'sightseeing', image: images['dubai-sightseeing'] },
-  { id: 'fishing', image: images['yacht-fishing'] },
+  { id: 'yacht-rental', image: images['azimut-58'] },
   { id: 'water-sports', image: images['water-sports'] },
   { id: 'yacht-party', image: images['corporate-cruise'] },
   { id: 'romantic', image: images['romantic-cruise'] },

@@ -1,6 +1,6 @@
 # Emirates Fishing Tour
 
-Marketing website for **Emirates Fishing Tour** — luxury yacht rental, fishing trips and cruises in Dubai.
+Marketing website for **Emirates Fishing Tour** — luxury yacht rental and cruises in Dubai.
 Built with [Astro](https://astro.build): component-based source, static HTML output (fast, SEO-friendly).
 
 ## Tech stack
@@ -26,16 +26,16 @@ npm run preview    # preview the production build locally
 ```
 src/
   pages/[...lang]/  # one file per route, built once per language:
-                 #   / , /about , /yacht-rental , /fishing-regions ,
-                 #   /excursions , /contacts  (+ /ru/… and /uz/…)
+                 #   / , /about , /yacht-rental , /excursions ,
+                 #   /contacts  (+ /ru/… and /uz/…)
   layouts/       # BaseLayout.astro — <head>/SEO, Header, Footer, reveal script
   components/    # Header, Footer, Hero, YachtCard, ServiceTile, ServiceRow,
-                 #   RegionCard, Checklist, Benefits, Stats, Pills, CtaBand,
+                 #   Checklist, Benefits, Stats, Pills, CtaBand,
                  #   FeatureSplit, ContactForm, Section, SectionHeading
   i18n/          # config.ts (locales, URL helpers), index.ts (useI18n),
                  #   locales/en.ts · ru.ts · uz.ts — ALL site copy lives here
   data/          # non-text data (ids, images, prices) merged with i18n copy:
-                 #   fleet.ts (yachts), services.ts (excursions), regions.ts
+                 #   fleet.ts (yachts), services.ts (excursions)
   assets/img/    # source images (optimized at build)
   assets/images.ts  # image registry
   styles/global.css # design tokens, utilities, responsive rules, fonts
@@ -53,8 +53,7 @@ All copy lives in the locale dictionaries `src/i18n/locales/{en,ru,uz}.ts`, so c
 - **Page texts, navigation, footer, form, buttons** → the matching keys in `src/i18n/locales/*.ts`
 - **Yachts / prices / capacity** → `src/data/fleet.ts`
 - **Excursions** (titles + descriptions) → `services` in the locale files; images/order in `src/data/services.ts`
-- **Fishing regions** → `regions` in the locale files; images/order in `src/data/regions.ts`
-- **"What's included", advantages, fishing gear, landmarks** → `lists` in the locale files
+- **"What's included", advantages, landmarks** → `lists` in the locale files
 - **Colors / typography** → the `@theme` tokens in `src/styles/global.css` (e.g. `--color-brand`), exposed as Tailwind utilities like `text-brand` / `bg-navy`
 
 ## Languages
@@ -70,6 +69,8 @@ All copy lives in the locale dictionaries `src/i18n/locales/{en,ru,uz}.ts`, so c
 - The header switcher links to the same page in the other languages; `<html lang>`, `og:locale`, `hreflang` alternates (+ `x-default`) and the sitemap are generated per language.
 - Uzbek uses the official Latin spelling with ʻ (U+02BB) in oʻ/gʻ and ʼ (U+02BC) — not a plain apostrophe.
 - To add a language: add the code to `locales` in `src/i18n/config.ts`, create `src/i18n/locales/<code>.ts`, register it in `src/i18n/index.ts` and in the sitemap `i18n.locales` in `astro.config.mjs`.
+
+The old `/fishing-regions` pages (all languages) redirect to `/yacht-rental` — see `redirects` in `astro.config.mjs`.
 
 ## Deployment
 

@@ -21,26 +21,19 @@ const uz: Dict = {
   nav: {
     home: 'Bosh sahifa',
     about: 'Biz haqimizda',
-    regions: 'Baliq ovi joylari',
     yachts: 'Yaxta ijarasi',
     excursions: 'Ekskursiyalar',
     contacts: 'Aloqa',
-    allRegions: 'Barcha baliq ovi joylari',
+    allYachts: 'Barcha yaxtalar',
     primary: 'Asosiy menyu',
     openMenu: 'Menyuni ochish',
     homeAria: 'Emirates Fishing Tour — bosh sahifa',
     language: 'Til',
   },
 
-  regionLinks: {
-    'dubai-marina': 'Dubay Marina va sohil',
-    'persian-gulf': 'Fors koʻrfazi chuqur suvlari',
-    'palm-jumeirah': 'Palm Jumeyra suvlari',
-    musandam: 'Musandam yarim oroli',
-  },
   excursionLinks: {
     sightseeing: 'Sayohat kruizlari',
-    fishing: 'Yaxtada baliq ovi',
+    'yacht-rental': 'Shaxsiy yaxta ijarasi',
     'water-sports': 'Suv sporti',
     'yacht-party': 'Yaxtada bayram',
     romantic: 'Romantik kruiz',
@@ -48,7 +41,7 @@ const uz: Dict = {
   },
 
   footer: {
-    about: 'Dubayda hashamatli yaxtalar ijarasi, baliq ovi va individual kruizlar. Toʻliq sugʻurta, litsenziyali ekipaj, besh yulduzli xizmat — 24/7.',
+    about: 'Dubayda hashamatli yaxtalar ijarasi va individual kruizlar. Toʻliq sugʻurta, litsenziyali ekipaj, besh yulduzli xizmat — 24/7.',
     navigation: 'Navigatsiya',
     excursions: 'Ekskursiyalar',
     contact: 'Biz bilan bogʻlaning',
@@ -131,17 +124,6 @@ const uz: Dict = {
       'Suv sporti — gidrotsikllar, flaybordlar va puflanadigan qayiqlar',
       'Har bir charterda litsenziyali kapitan va professional ekipaj',
     ],
-    fishingGear: [
-      'Qarmoqlar, gʻaltaklar va anjomlar',
-      'Xoʻrak va muz',
-      'Litsenziyali kapitan va ekipaj',
-      'Alkogolsiz ichimliklar va suv',
-      'Xavfsizlik vositalari',
-      'Soʻrov boʻyicha ovni tozalash',
-      'Yoqilgʻi narxga kiritilgan',
-      'Barcha mehmonlar uchun sugʻurta',
-      'Moslashuvchan marshrutlar',
-    ],
     landmarks: [
       'Jumeirah Beach Residence',
       'Palm Jumeyra',
@@ -154,29 +136,6 @@ const uz: Dict = {
     ],
   },
 
-  regions: {
-    'dubai-marina': {
-      title: 'Dubay Marina va sohil',
-      alt: 'Dubay Marina sohili',
-      text: 'JBR, Palm Jumeyra va Marina boʻylab sokin sohilboʻyi suvlari oilalar va qisqa sayohatlar uchun eng qulay hududdir. Yengil anjomlar va shoshilmasdan baliq ovi — osmonoʻpar binolar fonida koʻpincha kvinfish va barrakuda tutiladi.',
-    },
-    'persian-gulf': {
-      title: 'Fors koʻrfazi — chuqur suvlar',
-      alt: 'Fors koʻrfazida chuqur suv baliq ovi',
-      text: 'Yirik baliqlarni trolling usulida ovlash uchun ochiq dengizga chiqing. Bu suvlarda qirol skumbriyasi, tunets va yelkanli baliq uchraydi. Eng yaxshi natija — baliq qayerda turishini biladigan litsenziyali kapitan bilan butun kunlik charterda. Haqiqiy kurashga tayyor boʻling!',
-    },
-    'palm-jumeirah': {
-      title: 'Palm Jumeyra suvlari',
-      alt: 'Palm Jumeyra yaqinidagi yaxta',
-      text: 'Palm va Atlantis yaqinidagi panoh riflar va chuqurliklar hayotga boy. Bu grouper va snapper kabi baliqlarni tubdan ovlash uchun eng yaxshi joy — sohilga yaqin va Dubayning eng mashhur diqqatga sazovor joylari bilan oʻralgan.',
-    },
-    musandam: {
-      title: 'Musandam yarim oroli',
-      alt: 'Feruza suv ustidagi Musandam fyordlari',
-      text: 'Ummon chegarasidagi ajoyib fyordlar va mintaqadagi eng toza suvlardan biri. Uzoq kruizlarda ajoyib rif baliq ovini snorkeling bilan birlashtiring — oʻzgacha narsani istaganlar uchun shahardan ancha uzoqda butun kunlik yoki tunab qolinadigan sayohat.',
-    },
-  },
-
   services: {
     sightseeing: {
       category: 'Sayohat',
@@ -185,12 +144,12 @@ const uz: Dict = {
       short: 'Hashamatli yaxtada mashhur manzaralar — Palm Jumeyra, Burj al-Arab va Dubay Marina yonidan suzib oʻting.',
       full: 'Hech suv boʻylab sayohat qilib, Dubayning hayratlanarli manzaralaridan bahramand boʻlishni orzu qilganmisiz? Emirates Fishing Tour bilan sayohat kruizida hashamat va kashfiyotlarga toʻla sayohatga chiqing. Dubayda sayohat kruizi uchun yaxta ijaraga olish juda oson. Ekskursiya davomida Dubayning mashhur joylarini — Jumeirah Beach Residence, Palm Jumeyra oroli, Burj al-Arab mehmonxonasi, yangi Royal Atlantis, Dubay Krik, The World orollari, Dubay Marina va boshqa koʻplab joylarni koʻrasiz.',
     },
-    fishing: {
-      category: 'Baliq ovi',
-      title: 'Yaxtada baliq ovi',
-      alt: 'Dubay suvlarida yaxtada baliq ovi',
-      short: 'Mutaxassislarimiz BAAdagi eng yaxshi joylarni biladi — barcha anjomlar bilan ajoyib ovdan zavqlaning.',
-      full: 'BAAda baliq oviga jiddiy yondashish kerak. Axir yaxshi ov uchun toʻgʻri joylarni bilish, anjomlar va boshqa texnik masalalar boʻyicha oldindan maslahat olish zarur. Professional jamoamiz sizga hamma narsani mamnuniyat bilan tushuntirib beradi va tur tafsilotlari bilan tanishtiradi. Biz eng yaxshi baliq ovi joylarini bilamiz va sizga betakror taassurotlar hadya etamiz. Dubayning eng yaxshi joylarida ajoyib ovdan zavqlaning!',
+    'yacht-rental': {
+      category: 'Yaxta ijarasi',
+      title: 'Shaxsiy yaxta ijarasi',
+      alt: 'Dubayda shaxsiy yaxta ijarasi',
+      short: 'Litsenziyali ekipaj bilan faqat sizga tegishli yaxta — soatbay yoki butun kunga, siz tanlagan marshrut boʻyicha.',
+      full: 'Yaxtani toʻliq — faqat oʻzingiz va mehmonlaringiz uchun ijaraga oling. Flotimizdan zamonaviy Azimut yaxtasini tanlang, uni soatbay yoki butun kunga bron qiling, marshrutni esa istaklaringizga koʻra rejalashtiramiz: choʻmilish uchun toʻxtash, quyosh botishidagi shahar manzarasi yoki Fors koʻrfazining ochiq suvlari. Litsenziyali kapitan va ekipaj, yoqilgʻi, alkogolsiz ichimliklar, sochiqlar va toʻliq sugʻurta narxga kiritilgan, ketering, bezatish yoki fotograf esa soʻrov boʻyicha qoʻshiladi.',
     },
     'water-sports': {
       category: 'Suv sporti',
@@ -227,7 +186,7 @@ const uz: Dict = {
   pages: {
     home: {
       title: 'Dubayda yaxta ijarasi | Emirates Fishing Tour',
-      description: 'Dubayda hashamatli yaxtalar ijarasi, baliq ovi va kruizlar. Toʻliq sugʻurta, litsenziyali ekipaj, 24/7 bron qilish.',
+      description: 'Dubayda hashamatli yaxtalar ijarasi va kruizlar. Toʻliq sugʻurta, litsenziyali ekipaj, 24/7 bron qilish.',
       hero: {
         alt: 'Dubayda feruza suv ustida suzayotgan hashamatli yaxta',
         eyebrow: 'Dubayda yaxta ijarasi · 24/7 bron qilish',
@@ -246,7 +205,7 @@ const uz: Dict = {
         alt: 'Suvdan Dubay sohili manzarasi',
         eyebrow: 'Dubayga xush kelibsiz',
         title: 'Har qanday gʻoya haqiqatga aylanadigan jannat',
-        p1: 'Dubay — katta imkoniyatlar shahri va suvda dam olish uchun eng yaxshi sharoitlarni taklif qiladigan kamdan-kam joylardan biri. Baliq ovi va suv sporti ishqibozlari, shaxsiy bayramlar va korporativ tadbirlar yoki shunchaki maftunkor manzaralar qurshovida hashamatli dam olishni sevuvchilar uchun Emirates Fishing Tour har qanday gʻoyani amalga oshirishga yordam beradi.',
+        p1: 'Dubay — katta imkoniyatlar shahri va suvda dam olish uchun eng yaxshi sharoitlarni taklif qiladigan kamdan-kam joylardan biri. Suv sporti ishqibozlari, shaxsiy bayramlar va korporativ tadbirlar yoki shunchaki maftunkor manzaralar qurshovida hashamatli dam olishni sevuvchilar uchun Emirates Fishing Tour har qanday gʻoyani amalga oshirishga yordam beradi.',
         p2: 'Fors koʻrfazida charter uchun zamonaviy yaxta ijarasidan tortib guruhli tematik kruizgacha — ekspertlar jamoamiz Dubaydagi yaxtadagi dam olishingiz ajoyib manzaralar va bortdagi ideal qulayliklar bilan alohida boʻlishi uchun hamma narsani qiladi.',
         button: 'Biz haqimizda',
       },
@@ -263,18 +222,18 @@ const uz: Dict = {
 
     about: {
       title: 'Biz haqimizda | Emirates Fishing Tour',
-      description: 'Emirates Fishing Tour haqida bilib oling — Dubayda hashamatli yaxta ijarasi, baliq ovi va kruizlar boʻyicha mutaxassislar.',
+      description: 'Emirates Fishing Tour haqida bilib oling — Dubayda hashamatli yaxta ijarasi va kruizlar boʻyicha mutaxassislar.',
       hero: {
         alt: 'Dubay sohili boʻylab suzayotgan hashamatli yaxta',
         title: 'Emirates Fishing Tour haqida',
-        subtitle: 'Dubayda hashamatli yaxta ijarasi, baliq ovi va kruizlar boʻyicha mutaxassislar.',
+        subtitle: 'Dubayda hashamatli yaxta ijarasi va kruizlar boʻyicha mutaxassislar.',
       },
       welcome: {
         alt: 'Dubayda suv ustidagi hashamatli yaxta',
         eyebrow: 'Dubayga xush kelibsiz',
         title: 'Har qanday gʻoya haqiqatga aylanadigan jannat',
         paragraphs: [
-          'Dubay — katta imkoniyatlar shahri va har bir sayohatchi oʻz maqsad va gʻoyalarini haqiqatga aylantira oladigan jannat. Bu suvda dam olish uchun eng yaxshi sharoitlarni taklif qiladigan kamdan-kam joylardan biri. Baliq ovi va suv sporti ishqibozlari, shaxsiy bayramlar va korporativ tadbirlar yoki shunchaki maftunkor manzaralar qurshovida hashamatli dam olishni sevuvchilar uchun Emirates Fishing Tour har qanday gʻoyani amalga oshirishga yordam beradi.',
+          'Dubay — katta imkoniyatlar shahri va har bir sayohatchi oʻz maqsad va gʻoyalarini haqiqatga aylantira oladigan jannat. Bu suvda dam olish uchun eng yaxshi sharoitlarni taklif qiladigan kamdan-kam joylardan biri. Suv sporti ishqibozlari, shaxsiy bayramlar va korporativ tadbirlar yoki shunchaki maftunkor manzaralar qurshovida hashamatli dam olishni sevuvchilar uchun Emirates Fishing Tour har qanday gʻoyani amalga oshirishga yordam beradi.',
           'Katta flotimiz eng soʻnggi qulayliklar bilan jihozlangan yaxta va qayiqlarning keng tanlovini taklif etadi. Zamonaviy nafis kemani yoki klassik yaxtani afzal koʻrasizmi — bizda har qanday didga mos variant bor va barcha modellar eng yangi texnik talablarga javob beradi.',
           'Fors koʻrfazida charter uchun zamonaviy yaxta ijarasidan tortib guruhli tematik kruizgacha — ekspertlar jamoamiz Dubaydagi yaxtadagi dam olishingiz ajoyib manzaralar va bortdagi ideal qulayliklar bilan alohida boʻlishi uchun hamma narsani qiladi.',
           'Kompaniyamiz xizmatlaridan bir marta foydalangach, yana Emirates Fishing Tourga murojaat qilishni istaysiz — chunki xizmatimiz haqiqatan ham yuqori sifatli. Mijozlarimiz doimo mamnun va bizni yaqinlari hamda doʻstlariga tavsiya qilishadi.',
@@ -322,41 +281,9 @@ const uz: Dict = {
       dreamButton: 'Ariza qoldirish',
     },
 
-    regions: {
-      title: 'Baliq ovi joylari | Emirates Fishing Tour',
-      description: 'BAAdagi eng yaxshi baliq ovi joylari — Dubay Marina, Fors koʻrfazi, Palm Jumeyra va Musandam.',
-      hero: {
-        alt: 'Dubay sohilida yaxtadan baliq ovi',
-        title: 'BAAdagi baliq ovi joylari',
-        subtitle: 'Toʻgʻri joy, toʻgʻri mavsum va toʻgʻri anjomlar — biz bularning barchasini bilamiz.',
-      },
-      intro: {
-        eyebrow: 'Yaxtada baliq ovi',
-        title: 'Dubay atrofida qayerda baliq ovlash mumkin',
-        paragraphs: [
-          'BAAda baliq oviga jiddiy yondashish kerak. Axir yaxshi ov uchun toʻgʻri joylarni bilish, anjomlar va boshqa texnik masalalar boʻyicha oldindan maslahat olish zarur. Professional jamoamiz sizga hamma narsani mamnuniyat bilan tushuntirib beradi va tur tafsilotlari bilan tanishtiradi.',
-          'Biz eng yaxshi baliq ovi joylarini bilamiz va sizga betakror taassurotlar hadya etamiz. Marina yaqinidagi sokin sohilboʻyi suvlaridan Fors koʻrfazidagi chuqur suv trollingi va Musandamning ajoyib fyordlarigacha — har bir hududning oʻz xarakteri, mavsumi va ovi bor. Dubayning eng yaxshi joylarida ajoyib ovdan zavqlaning!',
-        ],
-      },
-      list: {
-        eyebrow: 'Baliq ovi joylari',
-        title: 'Qarmoq tashlashga arziydigan toʻrtta suv hududi',
-        lead: 'Kuningizga mos joyni tanlang — sohil yaqinida sokin oilaviy sayr, yirik baliq uchun butun kunlik charter yoki daxlsiz riflarga uzoq kruiz.',
-      },
-      gear: {
-        eyebrow: 'Har bir baliq ovi charterida',
-        title: 'Bortda kerakli hamma narsa',
-        lead: 'Bortga chiqing va baliq ovlang — har bir charter toʻliq jihozlangan. Birinchi qarmoq tashlashingizdan oldin sizni kutib turgan narsalar:',
-      },
-      cta: {
-        title: 'Emirates Fishing Tour bilan baliq ovi charterini bugunoq bron qiling',
-        text: 'Dubayda yaxta ijaraga olish oson — mutaxassislarimiz bilan bogʻlaning. Toʻgʻri joy, mavsum va anjomlarni tanlashda yordam beramiz, marshrutni rejalashtiramiz va har bir tafsilotni tashkil qilamiz. Jamoamiz 24/7 ishlaydi.',
-      },
-    },
-
     excursions: {
       title: 'Dubaydagi ekskursiyalar | Emirates Fishing Tour',
-      description: 'Dubayda yaxtada ekskursiyalar — sayohat kruizlari, baliq ovi, suv sporti, bayramlar, romantik va korporativ kruizlar.',
+      description: 'Dubayda yaxtada ekskursiyalar — sayohat kruizlari, shaxsiy yaxta ijarasi, suv sporti, bayramlar, romantik va korporativ kruizlar.',
       hero: {
         alt: 'Dubay osmonoʻpar binolari yonidan suzayotgan yaxta',
         title: 'Dubaydagi ekskursiyalar va kruizlar',
@@ -388,7 +315,7 @@ const uz: Dict = {
       p2: [
         'Suvda dam olish haqida gap ketganda xavfsizlik katta rol oʻynaydi. Bizdan qayiq yoki yaxta ijaraga olganingizda avtomatik ravishda xavfsizlik kafolatini olasiz — siz ',
         'toʻliq sugʻurtalangan',
-        ' boʻlasiz. Biz har bir jihatni hisobga olamiz: bortda bolalar, baliq ovi ishqibozlari yoki gidrotsikl, banan va flaybord muxlislari bormi. Maqsadimiz — dam olishingizni imkon qadar qulay qilish.',
+        ' boʻlasiz. Biz har bir jihatni hisobga olamiz: bortda bolalar, nishonlanadigan sana yoki gidrotsikl, banan va flaybord muxlislari bormi. Maqsadimiz — dam olishingizni imkon qadar qulay qilish.',
       ],
       call: 'Istalgan vaqtda qoʻngʻiroq qiling',
       whatsapp: 'WhatsApp',

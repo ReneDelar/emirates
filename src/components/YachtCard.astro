@@ -6,7 +6,7 @@ interface Props { yacht: Yacht }
 const { yacht } = Astro.props;
 const { t, path } = useI18n(Astro.url);
 ---
-<article class="card">
+<article class="card scroll-mt-[90px]" id={yacht.id}>
   <div class="relative h-[228px]">
     <Image src={yacht.image} alt={yacht.alt} class="w-full h-full object-cover" />
     {yacht.bestseller && (

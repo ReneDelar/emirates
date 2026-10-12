@@ -2,7 +2,8 @@
 import { Image } from 'astro:assets';
 import logoBlue from '../assets/logo-blue.png';
 import { useI18n, dictionaries, locales, localizePath, stripLang } from '../i18n';
-export type NavKey = 'home' | 'about' | 'regions' | 'yachts' | 'excursions' | 'contacts';
+import { getFleet } from '../data/fleet';
+export type NavKey = 'home' | 'about' | 'yachts' | 'excursions' | 'contacts';
 interface Props { active?: NavKey }
 const { active } = Astro.props;
 const { lang, t, path } = useI18n(Astro.url);
@@ -11,13 +12,12 @@ interface Item { key: NavKey; label: string; href: string; dropdown?: { label: s
 const nav: Item[] = [
   { key: 'about', label: t.nav.about, href: path('/about') },
   {
-    key: 'regions', label: t.nav.regions, href: path('/fishing-regions'),
+    key: 'yachts', label: t.nav.yachts, href: path('/yacht-rental'),
     dropdown: [
-      ...Object.entries(t.regionLinks).map(([id, label]) => ({ label, href: path(`/fishing-regions#${id}`) })),
-      { label: t.nav.allRegions, href: path('/fishing-regions') },
+      ...getFleet(lang).map((y) => ({ label: y.name, href: path(`/yacht-rental#${y.id}`) })),
+      { label: t.nav.allYachts, href: path('/yacht-rental') },
     ],
   },
-  { key: 'yachts', label: t.nav.yachts, href: path('/yacht-rental') },
   {
     key: 'excursions', label: t.nav.excursions, href: path('/excursions'),
     dropdown: Object.entries(t.excursionLinks).map(([id, label]) => ({ label, href: path(`/excursions#${id}`) })),
@@ -95,7 +95,7 @@ const dropdownLink =
     {nav.map((item) => (
       <>
         <a class={`py-[13px] px-1 border-b border-line font-bold text-base no-underline ${active === item.key ? 'text-brand' : 'text-[#27384a]'}`} href={item.href}>{item.label}</a>
-        {item.dropdown && item.dropdown.slice(0, item.key === 'regions' ? -1 : undefined).map((d) => (
+        {item.dropdown && item.dropdown.slice(0, item.key === 'yachts' ? -1 : undefined).map((d) => (
           <a class="py-[9px] pr-1 pl-[18px] border-b border-[#f4f7fa] text-[#6b7a88] font-semibold text-[14px] no-underline" href={d.href}>{d.label}</a>
         ))}
       </>

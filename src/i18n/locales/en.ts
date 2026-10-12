@@ -19,11 +19,10 @@ const en = {
   nav: {
     home: 'Home',
     about: 'About Us',
-    regions: 'Fishing regions',
     yachts: 'Yacht Rental',
     excursions: 'Excursions Dubai',
     contacts: 'Contacts',
-    allRegions: 'All fishing regions',
+    allYachts: 'All yachts',
     primary: 'Primary',
     openMenu: 'Open menu',
     homeAria: 'Emirates Fishing Tour — home',
@@ -31,15 +30,9 @@ const en = {
   },
 
   // Short labels used in the header dropdown, footer and booking form.
-  regionLinks: {
-    'dubai-marina': 'Dubai Marina & Coast',
-    'persian-gulf': 'Persian Gulf Deep Sea',
-    'palm-jumeirah': 'Palm Jumeirah Waters',
-    musandam: 'Musandam Peninsula',
-  },
   excursionLinks: {
     sightseeing: 'Sightseeing Cruises',
-    fishing: 'Yacht Fishing',
+    'yacht-rental': 'Private Yacht Rental',
     'water-sports': 'Water Sports',
     'yacht-party': 'Yacht Party',
     romantic: 'Romantic Cruise',
@@ -47,7 +40,7 @@ const en = {
   },
 
   footer: {
-    about: 'Luxury yacht rental, fishing trips and bespoke cruises in Dubai. Fully insured, licensed crew, five-star service — 24/7.',
+    about: 'Luxury yacht rental and bespoke cruises in Dubai. Fully insured, licensed crew, five-star service — 24/7.',
     navigation: 'Navigation',
     excursions: 'Excursions',
     contact: 'Get in touch',
@@ -130,17 +123,6 @@ const en = {
       'Water-sports add-ons — jet skis, flyboards and inflatable boats',
       'A licensed captain & professional crew on every charter',
     ],
-    fishingGear: [
-      'Rods, reels & tackle',
-      'Bait & ice',
-      'Licensed captain & crew',
-      'Soft drinks & water',
-      'Safety equipment',
-      'Catch cleaning on request',
-      'Fuel included',
-      'Insurance for all guests',
-      'Flexible routes',
-    ],
     landmarks: [
       'Jumeirah Beach Residence',
       'Palm Jumeirah',
@@ -153,29 +135,6 @@ const en = {
     ],
   },
 
-  regions: {
-    'dubai-marina': {
-      title: 'Dubai Marina & Coast',
-      alt: 'Dubai Marina coastline',
-      text: 'Calm inshore waters along JBR, Palm Jumeirah and the Marina make this the friendliest region for families and shorter trips. Light tackle and a relaxed pace, with common catches like queenfish and barracuda close to the skyline.',
-    },
-    'persian-gulf': {
-      title: 'Persian Gulf — Deep Sea',
-      alt: 'Deep-sea fishing in the Persian Gulf',
-      text: 'Head offshore for serious big-game trolling. Kingfish, tuna and sailfish run these waters, and the action is best on full-day charters with a licensed captain who knows where the fish are holding. Bring your appetite for the fight.',
-    },
-    'palm-jumeirah': {
-      title: 'Palm Jumeirah Waters',
-      alt: 'Yacht near Palm Jumeirah',
-      text: "Sheltered reefs and drop-offs near the Palm and Atlantis hold plenty of life. This is prime bottom-fishing territory for grouper and snapper, all within easy reach of the shore and framed by Dubai's most iconic landmarks.",
-    },
-    musandam: {
-      title: 'Musandam Peninsula',
-      alt: 'Musandam fjords on turquoise water',
-      text: 'Dramatic fjords on the Oman border, with some of the most pristine water in the region. Combine excellent reef fishing with snorkelling on extended cruises — a full-day or overnight escape well beyond the city for those who want something special.',
-    },
-  },
-
   services: {
     sightseeing: {
       category: 'Sightseeing',
@@ -184,12 +143,12 @@ const en = {
       short: 'Glide past the iconic skyline — Palm Jumeirah, Burj Al Arab and Dubai Marina — on a luxury yacht.',
       full: 'Have you ever dreamed of taking a tour on the water and enjoying the astonishing views of Dubai? Make a journey of luxury and discovery with sightseeing yacht cruises in Dubai with Emirates Fishing Tour. Renting a yacht for a sightseeing cruise in Dubai is very easy. During the excursion, you will have the opportunity to see the iconic sights of Dubai, such as Jumeirah Beach Residence, Palm Jumeirah island, Burj Al Arab hotel, the new Royal Atlantis, Dubai Creek, The World, Dubai Marina and much more.',
     },
-    fishing: {
-      category: 'Fishing',
-      title: 'Yacht Fishing',
-      alt: 'Yacht fishing trip in Dubai waters',
-      short: 'Our pros know the best spots in the UAE — enjoy a great catch with all equipment provided.',
-      full: 'Fishing in the UAE should be approached thoroughly. After all, you need to know the right places for good fishing, and be consulted in advance about equipment and other technical issues. Our team of professionals will be happy to inform you and familiarize you with the details of the tour. We know the best fishing spots and can provide you with a unique experience of fishing. Enjoy a great catch in the best fishing spots of Dubai!',
+    'yacht-rental': {
+      category: 'Yacht rental',
+      title: 'Private Yacht Rental',
+      alt: 'Private yacht charter in Dubai',
+      short: 'Your own yacht with a licensed crew — by the hour or for the whole day, on the route you choose.',
+      full: 'Rent a whole yacht just for you and your guests. Choose a modern Azimut from our fleet, book it by the hour or for the whole day, and we will plan the route around your wishes — a calm swim stop, the city skyline at sunset or the open waters of the Persian Gulf. A licensed captain and crew, fuel, soft drinks, towels and full insurance are included, and extras such as catering, decoration or a photographer can be added on request.',
     },
     'water-sports': {
       category: 'Water sports',
@@ -226,7 +185,7 @@ const en = {
   pages: {
     home: {
       title: 'Yacht Rental Dubai | Emirates Fishing Tour',
-      description: 'Luxury yacht rental, fishing trips and cruises in Dubai. Fully insured, licensed crew, 24/7 booking.',
+      description: 'Luxury yacht rental and cruises in Dubai. Fully insured, licensed crew, 24/7 booking.',
       hero: {
         alt: 'Luxury yacht cruising on turquoise water in Dubai',
         eyebrow: 'Yacht Rental Dubai · 24/7 booking',
@@ -245,7 +204,7 @@ const en = {
         alt: 'Dubai coastline skyline from the water',
         eyebrow: 'Welcome to Dubai',
         title: 'A paradise where every idea turns into reality',
-        p1: 'Dubai is a city of great opportunities — one of the few places offering the very best conditions for water recreation. For fans of fishing, water sports, private celebrations, corporate events or simply lovers of luxurious recreation surrounded by mesmerizing landscapes, Emirates Fishing Tour helps you bring every idea to life.',
+        p1: 'Dubai is a city of great opportunities — one of the few places offering the very best conditions for water recreation. For fans of water sports, private celebrations, corporate events or simply lovers of luxurious recreation surrounded by mesmerizing landscapes, Emirates Fishing Tour helps you bring every idea to life.',
         p2: 'From renting a modern yacht for a charter in the Persian Gulf to a group theme cruise, our team of experts does everything possible to give you an exceptional yacht charter holiday in Dubai, complete with stunning views and ideal onboard amenities.',
         button: 'About us',
       },
@@ -262,18 +221,18 @@ const en = {
 
     about: {
       title: 'About Us | Emirates Fishing Tour',
-      description: "Learn about Emirates Fishing Tour — Dubai's luxury yacht charter, fishing and cruise specialists.",
+      description: "Learn about Emirates Fishing Tour — Dubai's luxury yacht charter and cruise specialists.",
       hero: {
         alt: 'Luxury yacht cruising the Dubai coastline',
         title: 'About Emirates Fishing Tour',
-        subtitle: "Dubai's luxury yacht charter, fishing and cruise specialists.",
+        subtitle: "Dubai's luxury yacht charter and cruise specialists.",
       },
       welcome: {
         alt: 'Luxury yacht on the water in Dubai',
         eyebrow: 'Welcome to Dubai',
         title: 'A paradise where every idea turns into reality',
         paragraphs: [
-          'Dubai is a city of great opportunities and a paradise where every traveler can turn their goals and ideas into reality — one of the few places offering the very best conditions for water recreation. For fans of fishing, water sports, private celebrations, corporate events or simply lovers of luxurious recreation surrounded by mesmerizing landscapes, Emirates Fishing Tour helps you bring every idea to life.',
+          'Dubai is a city of great opportunities and a paradise where every traveler can turn their goals and ideas into reality — one of the few places offering the very best conditions for water recreation. For fans of water sports, private celebrations, corporate events or simply lovers of luxurious recreation surrounded by mesmerizing landscapes, Emirates Fishing Tour helps you bring every idea to life.',
           'Our extensive fleet offers a wide range of yachts and boats equipped with the latest features and amenities. Whether you prefer a sleek modern vessel or a classic yacht, our fleet has something to suit every taste — all models meeting the latest technical requirements.',
           'From renting a modern yacht for a charter in the Persian Gulf to a group theme cruise, our team of experts does everything possible to give you an exceptional yacht charter holiday in Dubai, complete with stunning views and ideal onboard amenities.',
           'Having used the services of our company once, you will wish to contact Emirates Fishing Tour again — because our service is of high quality. Our clients are always satisfied and recommend us to their relatives and friends.',
@@ -321,41 +280,9 @@ const en = {
       dreamButton: 'Request a booking',
     },
 
-    regions: {
-      title: 'Fishing Regions | Emirates Fishing Tour',
-      description: 'The best fishing regions in the UAE — Dubai Marina, the Persian Gulf, Palm Jumeirah and Musandam.',
-      hero: {
-        alt: 'Yacht fishing off the Dubai coast',
-        title: 'Fishing Regions in the UAE',
-        subtitle: 'Know the right places, the right season and the right gear — we do.',
-      },
-      intro: {
-        eyebrow: 'Yacht fishing',
-        title: 'Where to fish around Dubai',
-        paragraphs: [
-          'Fishing in the UAE should be approached thoroughly. After all, you need to know the right places for good fishing, and be consulted in advance about equipment and other technical issues. Our team of professionals will be happy to inform you and familiarize you with the details of the tour.',
-          'We know the best fishing spots and can provide you with a unique experience of fishing. From calm inshore waters along the Marina to deep-sea trolling in the Persian Gulf and the dramatic fjords of Musandam, every region has its own character, season and catch. Enjoy a great catch in the best fishing spots of Dubai!',
-        ],
-      },
-      list: {
-        eyebrow: 'Fishing regions',
-        title: 'Four waters worth casting a line in',
-        lead: 'Choose the spot that fits your day — a relaxed family outing close to shore, a full-day big-game charter, or an extended cruise to untouched reefs.',
-      },
-      gear: {
-        eyebrow: 'On every fishing charter',
-        title: 'Everything you need on board',
-        lead: 'Step aboard and fish — every charter comes complete. Here is what is ready and waiting before you cast your first line.',
-      },
-      cta: {
-        title: 'Book your fishing charter with Emirates Fishing Tour today',
-        text: 'It is easy to rent a yacht in Dubai — just contact our specialists. We help you choose the right region, the right season and the right gear, plan your route and arrange every detail. Our team works 24/7.',
-      },
-    },
-
     excursions: {
       title: 'Excursions Dubai | Emirates Fishing Tour',
-      description: 'Yacht excursions in Dubai — sightseeing, fishing, water sports, parties, romantic and corporate cruises.',
+      description: 'Yacht excursions in Dubai — sightseeing, private yacht rental, water sports, parties, romantic and corporate cruises.',
       hero: {
         alt: 'Yacht cruising past the Dubai skyline',
         title: 'Excursions & Cruises in Dubai',
@@ -388,7 +315,7 @@ const en = {
       p2: [
         'When it comes to water recreation, safety plays a big role. By renting a boat or yacht from us, you automatically receive a guarantee of safety — you will be ',
         'fully insured',
-        '. We take into account every nuance: whether there are children on board, fishing enthusiasts, or fans of jet skiing, banana boating and flyboarding. Our goal is to make your vacation as comfortable as possible.',
+        '. We take into account every nuance: whether there are children on board, a birthday to celebrate, or fans of jet skiing, banana boating and flyboarding. Our goal is to make your vacation as comfortable as possible.',
       ] as [string, string, string],
       call: 'Call us anytime',
       whatsapp: 'WhatsApp',
